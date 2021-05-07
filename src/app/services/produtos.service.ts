@@ -26,7 +26,7 @@ export class ProdutosService {
   saveProduto(produto: Produtos): Observable<Produtos>{
     return this.http.post<Produtos>(this.URL_API,JSON.stringify(produto),this.httpOptions)
   }
-    // utualiza um carro
+    // utualiza um produto
     updateProduto(produto: Produtos): Observable<Produtos> {
       return this.http.put<Produtos>(this.URL_API + '/' + produto.produto_id, JSON.stringify(produto), this.httpOptions)
         .pipe(
@@ -35,7 +35,7 @@ export class ProdutosService {
         )
     }
   
-    // deleta um carro
+    // deleta um produto
     deleteProduto(produto: Produtos) {
       return this.http.delete<Produtos>(this.URL_API + '/' + produto.produto_id, this.httpOptions)
         .pipe(
