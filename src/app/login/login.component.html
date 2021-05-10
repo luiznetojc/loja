@@ -1,0 +1,19 @@
+<div class="col d-flex justify-content-center">
+  <div class="card" id="telalogin">
+    <div class="card-body">
+
+      <form>
+        <div class="mb-3">
+          <label for="login" class="form-label">Login</label>
+          <input [(ngModel)]="requestLogin.login"type="login" class="form-control" id="login" [ngModelOptions]="{standalone: true}">
+          
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Senha</label>
+          <input [(ngModel)]="requestLogin.password" type="password" class="form-control" id="password" [ngModelOptions]="{standalone: true}">
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="doLogin()">Entrar</button>
+      </form>
+    </div>
+  </div>
+</div>
