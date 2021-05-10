@@ -1,0 +1,57 @@
+
+  <div class="container">
+    <div class="card list-produto">
+      <h5 class="card-header">Lista de Produtos</h5>
+      <div class="card-body">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">NCM</th>
+                <th scope="col">Unidade de medida</th>
+                <th scope="col">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let produtos of allProdutos | async">
+                <td>{{produtos.produto_id}}</td>
+                <td>{{produtos.descricao_produto}}</td>
+                <td>{{produtos.ncm_produto}}</td>
+                <td>{{produtos.unidade_medida}}</td>
+                <td>
+                  <button type="button" class="btn btn-warning btn-sm" (click)="editProduto(produtos)">Editar</button>
+                  <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deleteProduto(produtos)">Deletar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+    <div class="card add-produto">
+        <h5 class="card-header">Adicionar/Atualizar produto</h5>
+        <div class="card-body">
+            <form id="add-form" (ngSubmit)="f.form.valid && saveProduto(f)" #f="ngForm" novalidate>
+              <div class="form-group">
+                  <label for="descricao_produto">Descrição do produto</label>
+                  <input type="text" [(ngModel)]="produto.descricao_produto" id="descricao_produto" name="descricao_produto" #color="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted }" placeholder="Digite a Descrição">
+                 
+              </div>
+              <div class="form-group">
+                <label for="ncm_produto">NCM do produto</label>
+                <input type="text" [(ngModel)]="produto.ncm_produto" id="ncm_produto" name="dncm_produto" #color="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted }" placeholder="Digite o NCM">
+               
+            </div>
+            <div class="form-group">
+                <label for="unidade_medida">unidade_medida</label>
+                <input type="text" [(ngModel)]="produto.unidade_medida" id="dunidade_medida" name="unidade_medida" #color="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted }" placeholder="Digite a Unidade de medida">
+               
+            </div>
+            
+              <button type="submit" class="btn btn-primary btn-add-produto">Salvar</button>
+              <button type="reset" class="btn btn-secondary btn-add-produto" (click)="cleanForm(f)">Cancelar</button>
+            </form>
+        </div>
+      </div>
+  </div>
+
