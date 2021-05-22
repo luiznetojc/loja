@@ -8,7 +8,8 @@ import { Produtos } from '../modelos/produtos';
   providedIn: 'root'
 })
 export class ProdutosService {
-  URL_API = 'http://n3solucoes.zapto.org:9999/api/produtos';
+  //URL_API = 'http://n3solucoes.zapto.org:9999/api/produtos';
+  URL_API = 'http://localhost:27109/api/v1/produto';
   constructor(private http: HttpClient) { }
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json','Authorization': 'Basic my-auth-token' })

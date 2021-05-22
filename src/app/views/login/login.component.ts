@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { observable } from 'rxjs';
-import { RequestLogin } from '../modelos/request-login';
-import { LoginService } from '../services/login.service';
+import { RequestLogin } from '../../modelos/request-login';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-login',

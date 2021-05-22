@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RequestCadastro } from '../modelos/request-cadastro';
-import { CadastroService } from '../services/cadastro.service';
+import { RequestCadastro } from '../../modelos/request-cadastro';
+import { CadastroService } from '../../services/cadastro.service';
 
 @Component({
   selector: 'app-cadastro',

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ProdutosService } from '../services/produtos.service';
+import { ProdutosService } from '../../services/produtos.service';
 import { Observable } from 'rxjs';
-import { Produtos } from '../modelos/produtos'
+import { Produtos } from '../../modelos/produtos'
 import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-produtos',
@@ -10,10 +10,11 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./produtos.component.css']
 })
 export class ProdutosComponent implements OnInit {
-
+  filter!: string;
   title = 'loja';
   constructor(private produtosSvc: ProdutosService) {}
-    allProdutos!: Observable<any>; 
+    allProdutos!: Observable<any>;
+    selecaoProdutos!: Array<Produtos>; 
     produto = {} as Produtos;
   ngOnInit(): void {
     this.getAllProdutos();

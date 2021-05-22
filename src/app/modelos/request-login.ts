@@ -1,4 +1,4 @@
 export interface RequestLogin {
-    email: "string";
-    senha: "string";
+    email: string;
+    senha: string;
 }
