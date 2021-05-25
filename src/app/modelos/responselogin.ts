@@ -1,3 +1,7 @@
 export interface Responselogin {
-    jwt: string
+
+    emailUsuarioLogado: string,
+    usuarioId: string,
+    tokenUsuarioLogado: string
+
 }

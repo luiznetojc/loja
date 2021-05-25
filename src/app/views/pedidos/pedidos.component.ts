@@ -35,6 +35,7 @@ export class PedidosComponent implements OnInit {
   temp = {} as PedidoItem;
   cont = {} as number;
   qtd = {} as number;
+  CPF = {} as string;
   ngOnInit(): void {
     this.getAllProdutos();
     this.getAllPedidos();
@@ -49,7 +50,8 @@ export class PedidosComponent implements OnInit {
   selectProduto(produto: Produtos, qtd: number) {
     this.cont += 1;
     this.temp = {} as PedidoItem;
-    this.temp.idproduto = produto.produto_id;
+    //this.temp.idproduto = produto.produto_id;
+    this.temp.idproduto = this.cont;
     this.temp.idpedido_item = this.cont;
     this.temp.descricao_produto = produto.descricao_produto;
     this.temp.ncm_produto = produto.ncm_produto;
@@ -63,19 +65,20 @@ export class PedidosComponent implements OnInit {
 
   addPreco(produto: Produtos)// verify usado para dar desconto no preco total caso opçao 1 selecionada
   {
-   this.request.valor_pedido += (produto.preco_venda)*this.qtd - (0);//desconto 
+    this.request.valor_pedido += (produto.preco_venda) * this.qtd - (0);//desconto 
 
   }
-  erasePreco(produto:PedidoItem){
-    this.request.valor_pedido -= (produto.preco_item)*produto.quantidade_item - (0);//desconto
+  erasePreco(produto: PedidoItem) {
+    this.request.valor_pedido -= (produto.preco_item) * produto.quantidade_item - (0);//desconto
   }
   sendPedidos() {
-    this.request.cpf = "0904269";
-    this.request.data_pedido = Date.now().toString();
-    this.PedidosSvc.sendPedido(this.request);
+    //this.CPF = window.localStorage.getItem('cpfUsuario');
+    this.request.cpf = "string";
+    this.request.data_pedido = "2021-05-25T13:54:32.805Z";
+    //this.request.data_pedido = Date.now().toString();
+    this.PedidosSvc.sendPedido(this.request).subscribe(accept => (console.log(accept)), error => (console.error(error)));
   }
-  data()
-  {
+  data() {
     var today = new Date();
     console.log(today.getDate.toString());
 

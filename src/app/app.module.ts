@@ -10,6 +10,8 @@ import { LoginComponent } from './views/login/login.component';
 import { CadastroComponent } from './views/cadastro/cadastro.component';
 import { PedidosComponent } from './views/pedidos/pedidos.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { HomeComponent } from './views/home/home.component';
+import { PedidoslistComponent } from './views/pedidoslist/pedidoslist.component';
 
 
 
@@ -19,7 +21,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ProdutosComponent,
     LoginComponent,
     CadastroComponent,
-    PedidosComponent
+    PedidosComponent,
+    HomeComponent,
+    PedidoslistComponent
 
   ],
   imports: [

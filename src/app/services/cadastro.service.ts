@@ -12,10 +12,9 @@ export class CadastroService {
   constructor(private httpClient: HttpClient) { }
   Url = 'http://localhost:27109/api/v1/usuario/novo';
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json','Authorization': 'Bearer my-auth-token' })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer my-auth-token' })
   }
-  send(requestCadastro: RequestCadastro): Observable<Responselogin>
-  {
-    return this.httpClient.post<Responselogin>(this.Url,requestCadastro);
+  send(requestCadastro: RequestCadastro): Observable<Responselogin> {
+    return this.httpClient.post<Responselogin>(this.Url, requestCadastro);
   }
 }

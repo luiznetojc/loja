@@ -11,24 +11,22 @@ import { ResponsePedido } from '../modelos/response-pedido'
 })
 export class PedidosService {
 
-   //URL_API = 'http://n3solucoes.zapto.org:9999/api/produtos';
-   URL_API = 'http://localhost:27109/api/v1/pedido';
-   constructor(private http: HttpClient) { }
-   httpOptions = {
-     headers: new HttpHeaders({ 'Content-Type': 'application/json','Authorization': 'Basic my-auth-token' })
-    }
-    
-    //pegaro todos os pedidos
-   getAllPedidos(): Observable<ResponsePedido>{
-     return this.http.get<ResponsePedido>(this.URL_API).pipe(retry(2),catchError(this.handleError))
-   }
-   //Enviar pedido para API
-   sendPedido(request: RequestPedido):Observable<ResponsePedido>
-   {
-    console.log(request);
-     return this.http.post<ResponsePedido>(this.URL_API,request).pipe(retry(2),catchError(this.handleError));
-   }
-   // Manipulação de erros
+  //URL_API = 'http://n3solucoes.zapto.org:9999/api/produtos';
+  URL_API = 'http://localhost:27109/api/v1/pedido';
+  constructor(private http: HttpClient) { }
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Basic my-auth-token' })
+  }
+
+  //pegaro todos os pedidos
+  getAllPedidos(): Observable<ResponsePedido> {
+    return this.http.get<ResponsePedido>(this.URL_API).pipe(retry(2), catchError(this.handleError))
+  }
+  //Enviar pedido para API
+  sendPedido(request: RequestPedido): Observable<ResponsePedido> {
+    return this.http.post<ResponsePedido>(this.URL_API, request);
+  }
+  // Manipulação de erros
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="card list-produto">
+        <h5 class="card-header">Lista de Produtos</h5>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+
+                        <th scope="col">Id</th>
+                        <th scope="col">CPF</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">valor_pedido</th>
+                        <th scope="col">valor_desconto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let pedidos of allPedidos | async">
+                        <td>{{pedidos.idpedido}}</td>
+                        <td>{{pedidos.cpf}}</td>
+                        <td>{{pedidos.data_pedido}}</td>
+                        <td>{{pedidos.valor_pedido}}</td>
+                        <td>{{pedidos.valor_desconto}}</td>
+                        <td>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>

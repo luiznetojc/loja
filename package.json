@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "~11.2.12",
     "@angular/router": "~11.2.12",
     "bootstrap": "^4.6.0",
+    "jwt-decode": "^3.1.2",
     "ng2-search-filter": "^0.5.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
