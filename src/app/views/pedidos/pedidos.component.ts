@@ -25,17 +25,19 @@ export class PedidosComponent implements OnInit {
     preco_desconto_item: 0,
     quantidade_item: 0
   }]);
+  public paginaAtual = 1;
   selecaoProdutos = Array<PedidoItem>();
   constructor(private produtosSvc: ProdutosService, private PedidosSvc: PedidosService) {
     this.cont = 0;
     this.qtd = 1;
   }
+  public search = "";
   allProdutos!: Observable<any>;
   allPedidos!: Observable<any>;
   temp = {} as PedidoItem;
   cont = {} as number;
   qtd = {} as number;
-  CPF = {} as string;
+  public CPF = "";
   ngOnInit(): void {
     this.getAllProdutos();
     this.getAllPedidos();
@@ -58,30 +60,39 @@ export class PedidosComponent implements OnInit {
     this.temp.quantidade_item = qtd;
     this.temp.preco_item = produto.preco_venda;
     this.request.pedido_item.push(this.temp);
-    this.addPreco(produto);
-    this.data();
+    this.addPreco(this.temp);
 
   }
-
-  addPreco(produto: Produtos)// verify usado para dar desconto no preco total caso opçao 1 selecionada
+  searchProduto() {
+    if (this.search.length == 0) {
+      this.getAllProdutos();
+      return;
+    }
+    this.allProdutos = this.produtosSvc.searchProduto(this.search);
+  }
+  addPreco(produto: PedidoItem)// verify usado para dar desconto no preco total caso opçao 1 selecionada
   {
-    this.request.valor_pedido += (produto.preco_venda) * this.qtd - (0);//desconto 
+    this.request.valor_pedido += (produto.preco_item) * this.qtd - (0);//desconto 
 
+  }
+  addcpf() {
+    this.request.cpf = this.CPF;
   }
   erasePreco(produto: PedidoItem) {
     this.request.valor_pedido -= (produto.preco_item) * produto.quantidade_item - (0);//desconto
   }
   sendPedidos() {
-    //this.CPF = window.localStorage.getItem('cpfUsuario');
     this.request.cpf = "string";
     this.request.data_pedido = "2021-05-25T13:54:32.805Z";
-    //this.request.data_pedido = Date.now().toString();
+
     this.PedidosSvc.sendPedido(this.request).subscribe(accept => (console.log(accept)), error => (console.error(error)));
   }
-  data() {
-    var today = new Date();
-    console.log(today.getDate.toString());
-
+  clearProdutos() {
+    for (let index = 0; index < this.cont; index++) {
+      this.request.pedido_item.pop()
+    }
+    this.cont = 0;
+    this.request.valor_pedido = 0;
   }
   deleteProduto(produto: PedidoItem) {
     this.erasePreco(produto);

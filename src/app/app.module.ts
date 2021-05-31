@@ -12,7 +12,7 @@ import { PedidosComponent } from './views/pedidos/pedidos.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { HomeComponent } from './views/home/home.component';
 import { PedidoslistComponent } from './views/pedidoslist/pedidoslist.component';
-
+import { NgxPaginationModule } from 'ngx-pagination'; // Módulo da dependência de paginação
 
 
 @NgModule({
@@ -32,7 +32,8 @@ import { PedidoslistComponent } from './views/pedidoslist/pedidoslist.component'
     HttpClientModule,
     FlexLayoutModule,
     FormsModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

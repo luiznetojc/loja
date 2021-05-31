@@ -2,13 +2,15 @@
   <h5 class="card-header">Lista de Produtos</h5>
 
   <div class="card-body">
+    <input type="text" class="form-control" style="width: 500px;" placeholder="Buscar..." [(ngModel)]="search"
+      aria-label="Buscar..." (change)="searchProduto()">
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">Id</th>
-          <th scope="col">Descrição</th>
+          <th scope="col" style="width: 100px;">Id</th>
+          <th scope="col" style="width: 700px;">Descrição</th>
           <th scope="col">NCM</th>
-          <th scope="col">Unidade de medida</th>
+          <th scope="col" style="width: 100px;">Unidade de medida</th>
           <th scope="col">Preço</th>
           <th scope="col">Ações</th>
 
@@ -23,23 +25,22 @@
         <!--     <!--    <nav class="navbar">
                 <input class="form-control" type="text" name="search" [(ngModel)]="filter"/>
               </nav> -->
-        <tr *ngFor="let produtos of allProdutos| async">
+        <tr *ngFor="let produtos of allProdutos | async | paginate : { itemsPerPage: 5, currentPage: paginaAtual }">
           <td>{{produtos.produto_id}}</td>
           <td>{{produtos.descricao_produto}}</td>
           <td>{{produtos.ncm_produto}}</td>
           <td>{{produtos.unidade_medida}}</td>
-          <td>{{produtos.preco_item}}</td>
+          <td>{{produtos.preco_venda}}</td>
           <td>
-            <button class="btn btn-primary" (click)="selectProduto(produtos,qtd)" type="button">Add</button>
-
-            <!--   <input class="form-control" type="text" style="width: 50px;margin: 0 15px;" name="qtd"  [(ngModel)]="qtd" [ngModelOptions]="{standalone: true}"/>  
-                
-               <button type="button" class="btn btn-warning btn-sm"  style="margin-top: 0 15px;" (click)="selectProduto(produtos,qtd)">Adicionar</button> -->
-            <!-- <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deleteProduto(produtos)">Deletar</button> -->
+            <button class="btn btn-primary" (click)="selectProduto(produtos,qtd)" type="button">Adicionar</button>
           </td>
         </tr>
       </tbody>
+      <!-- Restante do código -->
+
     </table>
+    <pagination-controls (pageChange)="paginaAtual = $event" previousLabel="Anterior" nextLabel="Próximo">
+    </pagination-controls>
   </div>
 </div>
 <div class="card list-produto">
@@ -52,7 +53,13 @@
           <th scope="col">Descrição</th>
           <th scope="col">Preço: {{request.valor_pedido}}</th>
           <th scope="col">Ações</th>
-          <th><button type="button" class="btn btn-success" (click)="sendPedidos()">Enviar</button></th>
+          <th style="width: 200px;"><input type="text" class="form-control" style="width: 200px;" placeholder="CPF"
+              [(ngModel)]="CPF" aria-label="CPF"></th>
+          <th scope="col" style="width: 200px;">
+            <button style="margin-right: 10px ;" type="button" class="btn btn-success"
+              (click)="sendPedidos()">Enviar</button>
+            <button type="button" class="btn btn-danger" (click)="clearProdutos()">Limpar</button>
+          </th>
         </tr>
       </thead>
       <tbody>
