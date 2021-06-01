@@ -2,18 +2,22 @@
   <div class="card" id="telalogin">
     <div class="card-body">
 
-      <form>
-        <div class="mb-3">
-          <label for="login" class="form-label">Login</label>
-          <input [(ngModel)]="requestLogin.email"type="login" class="form-control" id="login" [ngModelOptions]="{standalone: true}">
-          
+      <div class="alert alert-danger" *ngIf="notFounded == false">
+        Usuário ou senha não encontrado!
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label> <input type="text" [(ngModel)]="requestLogin.email" class="form-control"
+          id="email">
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Senha</label>
+        <input [(ngModel)]="requestLogin.senha" type="password" class="form-control" id="password"
+          [ngModelOptions]="{standalone: true}" required>
+        <div class="invalid-feedback">
+          Por favor, informe uma senha.
         </div>
-        <div class="mb-3">
-          <label for="password" class="form-label">Senha</label>
-          <input [(ngModel)]="requestLogin.senha" type="password" class="form-control" id="password" [ngModelOptions]="{standalone: true}">
-        </div>
-        <button type="submit" class="btn btn-primary" (click)="doLogin()">Entrar</button>
-      </form>
+      </div>
+      <button type="button" class="btn btn-primary" (click)="doLogin()">Entrar</button>
     </div>
   </div>
 </div>

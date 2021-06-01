@@ -13,7 +13,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { HomeComponent } from './views/home/home.component';
 import { PedidoslistComponent } from './views/pedidoslist/pedidoslist.component';
 import { NgxPaginationModule } from 'ngx-pagination'; // Módulo da dependência de paginação
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,8 @@ import { NgxPaginationModule } from 'ngx-pagination'; // Módulo da dependência
     FlexLayoutModule,
     FormsModule,
     Ng2SearchPipeModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
