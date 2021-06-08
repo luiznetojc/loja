@@ -15,13 +15,13 @@ const routes: Routes = [
     children: [
       { path: 'produtos', component: ProdutosComponent },
       { path: 'pedidos', component: PedidosComponent },
-      { path: 'pedidoslist', component: PedidoslistComponent }
+      { path: 'pedidoslist', component: PedidoslistComponent },
+      { path: 'cadastro', component: CadastroComponent },
     ],
     canActivate: [AuthGuard]
   },
 
   { path: 'login', component: LoginComponent },
-  { path: 'cadastro', component: CadastroComponent },
 ];
 
 @NgModule({

@@ -37,6 +37,7 @@ export class PedidosComponent implements OnInit {
   temp = {} as PedidoItem;
   cont = {} as number;
   qtd = {} as number;
+  public valid = false;
   public CPF = "";
   ngOnInit(): void {
     this.getAllProdutos();
@@ -50,18 +51,28 @@ export class PedidosComponent implements OnInit {
     this.allProdutos = this.produtosSvc.getAllProdutos();
   }
   selectProduto(produto: Produtos, qtd: number) {
-    this.cont += 1;
-    this.temp = {} as PedidoItem;
-    //this.temp.idproduto = produto.produto_id;
-    this.temp.idproduto = this.cont;
-    this.temp.idpedido_item = this.cont;
-    this.temp.descricao_produto = produto.descricao_produto;
-    this.temp.ncm_produto = produto.ncm_produto;
-    this.temp.quantidade_item = qtd;
-    this.temp.preco_item = produto.preco_venda;
-    this.request.pedido_item.push(this.temp);
-    this.addPreco(this.temp);
-
+    if (qtd != 0) {
+      this.cont += 1;
+      this.temp = {} as PedidoItem;
+      //this.temp.idproduto = produto.produto_id;
+      this.temp.idproduto = this.cont;
+      this.temp.idpedido_item = this.cont;
+      this.temp.descricao_produto = produto.descricao_produto;
+      this.temp.ncm_produto = produto.ncm_produto;
+      this.temp.quantidade_item = qtd;
+      this.temp.preco_item = produto.preco_venda;
+      this.request.pedido_item.push(this.temp);
+      this.addPreco(this.temp);
+      this.isValid();
+    }
+  }
+  isValid() {
+    if (this.cont > 0) {
+      this.valid = true;
+    }
+    else {
+      this.valid = false;
+    }
   }
   searchProduto() {
     if (this.search.length == 0) {
@@ -93,6 +104,7 @@ export class PedidosComponent implements OnInit {
     }
     this.cont = 0;
     this.request.valor_pedido = 0;
+    this.isValid();
   }
   deleteProduto(produto: PedidoItem) {
     this.erasePreco(produto);
@@ -101,6 +113,7 @@ export class PedidosComponent implements OnInit {
         this.request.pedido_item.splice(index, 1);
     });
     this.cont -= 1;
+    this.isValid();
   }
 
 }

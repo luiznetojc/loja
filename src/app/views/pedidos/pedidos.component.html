@@ -1,82 +1,89 @@
-<div class="card list-produto">
-  <h5 class="card-header">Lista de Produtos</h5>
+<div class="container">
+  <div class="card list-produto">
+    <h5 class="card-header"><span class="name">Lista de Produtos</span></h5>
 
-  <div class="card-body">
-    <input type="text" class="form-control" style="width: 500px;" placeholder="Buscar..." [(ngModel)]="search"
-      aria-label="Buscar..." (change)="searchProduto()">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col" style="width: 100px;">Id</th>
-          <th scope="col" style="width: 700px;">Descrição</th>
-          <th scope="col">NCM</th>
-          <th scope="col" style="width: 100px;">Unidade de medida</th>
-          <th scope="col">Preço</th>
-          <th scope="col">Ações</th>
+    <div class="card-body">
+      <input type="text" class="form-control" style="width: 500px;" placeholder="Buscar..." [(ngModel)]="search"
+        aria-label="Buscar..." (change)="searchProduto()">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" style="width: 100px;">Id</th>
+            <th scope="col" style="width: 700px;">Descrição</th>
+            <th scope="col">NCM</th>
+            <th scope="col" style="width: 100px;">Unidade de medida</th>
+            <th scope="col">Preço</th>
+            <th scope="col">Ações</th>
 
-          <label>Quantidade:</label>
-          <input type="text" class="form-control" style="width: 100px;" placeholder="Quantidade" [(ngModel)]="qtd"
-            aria-label="Quantidade">
+            <label>Quantidade:</label>
+            <input type="text" class="form-control" style="width: 100px;" placeholder="Quantidade" [(ngModel)]="qtd"
+              aria-label="Quantidade">
 
 
-        </tr>
-      </thead>
-      <tbody>
-        <!--     <!--    <nav class="navbar">
+          </tr>
+        </thead>
+        <tbody>
+          <!--     <!--    <nav class="navbar">
                 <input class="form-control" type="text" name="search" [(ngModel)]="filter"/>
               </nav> -->
-        <tr *ngFor="let produtos of allProdutos | async | paginate : { itemsPerPage: 5, currentPage: paginaAtual }">
-          <td>{{produtos.produto_id}}</td>
-          <td>{{produtos.descricao_produto}}</td>
-          <td>{{produtos.ncm_produto}}</td>
-          <td>{{produtos.unidade_medida}}</td>
-          <td>{{produtos.preco_venda}}</td>
-          <td>
-            <button class="btn btn-primary" (click)="selectProduto(produtos,qtd)" type="button">Adicionar</button>
-          </td>
-        </tr>
-      </tbody>
-      <!-- Restante do código -->
+          <tr *ngFor="let produtos of allProdutos | async | paginate : { itemsPerPage: 5, currentPage: paginaAtual }">
+            <td>{{produtos.produto_id}}</td>
+            <td>{{produtos.descricao_produto}}</td>
+            <td>{{produtos.ncm_produto}}</td>
+            <td>{{produtos.unidade_medida}}</td>
+            <td>{{produtos.preco_venda}}</td>
+            <td>
+              <button class="btn btn-primary" (click)="selectProduto(produtos,qtd)" type="button">Adicionar</button>
+            </td>
+          </tr>
+        </tbody>
+        <!-- Restante do código -->
 
-    </table>
-    <pagination-controls (pageChange)="paginaAtual = $event" previousLabel="Anterior" nextLabel="Próximo">
-    </pagination-controls>
+      </table>
+      <pagination-controls (pageChange)="paginaAtual = $event" previousLabel="Anterior" nextLabel="Próximo">
+      </pagination-controls>
+    </div>
   </div>
-</div>
-<div class="card list-produto">
-  <h5 class="card-header">Lista de pedidos</h5>
-  <div class="card-body">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Id</th>
-          <th scope="col">Descrição</th>
-          <th scope="col">Preço: {{request.valor_pedido}}</th>
-          <th scope="col">Ações</th>
-          <th style="width: 200px;"><input type="text" class="form-control" style="width: 200px;" placeholder="CPF"
-              [(ngModel)]="CPF" aria-label="CPF"></th>
-          <th scope="col" style="width: 200px;">
-            <button style="margin-right: 10px ;" type="button" class="btn btn-success"
-              (click)="sendPedidos()">Enviar</button>
-            <button type="button" class="btn btn-danger" (click)="clearProdutos()">Limpar</button>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <!--    <nav class="navbar">
+  <div class="card list-produto">
+    <h5 class="card-header"><span class="name">Lista de pedidos</span>
+    </h5>
+    <div class="card-body">
+      <input type="text" class="form-control mr-sm-2" style="width: 200px;margin-left: 75%; margin-bottom: 10px;"
+        placeholder="CPF" [(ngModel)]="CPF" aria-label="CPF">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Preço</th>
+            <th scope="col">Ações</th>
+            <th scope="col" style="width: 200px;">
+              <div *ngIf="valid != false">
+                <button style="margin-right: 10px ;" type="button" class="btn btn-success"
+                  (click)="sendPedidos()">Enviar</button>
+                <button type="button" class="btn btn-danger" (click)="clearProdutos()">Limpar</button>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <!--    <nav class="navbar">
                 <input class="form-control" type="text" name="search" [(ngModel)]="filter"/>
               </nav> -->
-        <tr *ngFor="let Produtos of  request.pedido_item">
-          <td>{{Produtos.idpedido_item}}</td>
-          <td>{{Produtos.descricao_produto}}</td>
-          <td>{{Produtos.preco_item}}</td>
+          <tr *ngFor="let Produtos of  request.pedido_item">
+            <td>{{Produtos.idpedido_item}}</td>
+            <td>{{Produtos.descricao_produto}}</td>
+            <td>{{Produtos.preco_item}}</td>
 
 
-          <td>
-            <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deleteProduto(Produtos)">Deletar</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+            <td>
+              <button type="button" class="btn btn-danger btn-sm ml-1"
+                (click)="deleteProduto(Produtos)">Deletar</button>
+            </td>
+          </tr>
+        </tbody>
+        <span class="name"><b>Preço Total: {{request.valor_pedido}}</b></span>
+      </table>
+    </div>
   </div>
 </div>
