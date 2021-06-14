@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <div class="card list-produto">
     <h5 class="card-header"><span class="name">Lista de Produtos</span></h5>
 
@@ -53,9 +53,12 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Descrição</th>
+            <th scope="col" style="width: 100px;">Id</th>
+            <th scope="col" style="width: 700px;">Descrição</th>
+            <th scope="col">NCM</th>
             <th scope="col">Preço</th>
+            <th scope="col">Desconto</th>
+            <th scope="col">Qtd</th>
             <th scope="col">Ações</th>
             <th scope="col" style="width: 200px;">
               <div *ngIf="valid != false">
@@ -71,9 +74,12 @@
                 <input class="form-control" type="text" name="search" [(ngModel)]="filter"/>
               </nav> -->
           <tr *ngFor="let Produtos of  request.pedido_item">
-            <td>{{Produtos.idpedido_item}}</td>
+            <td>{{Produtos.idproduto}}</td>
             <td>{{Produtos.descricao_produto}}</td>
+            <td>{{Produtos.ncm_produto}}</td>
             <td>{{Produtos.preco_item}}</td>
+            <td>{{Produtos.preco_desconto_item}}</td>
+            <td>{{Produtos.quantidade_item}}</td>
 
 
             <td>
