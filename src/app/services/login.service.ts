@@ -59,9 +59,11 @@ export class LoginService {
     const token = window.localStorage.getItem('token');
     return token;
   }
+  removeAuthorizationToken() {
+    window.localStorage.removeItem('token');
+  }
   dopost(requestLogin: RequestLogin): Observable<Responselogin> {
     return this.httpClient.post<Responselogin>('https://localhost:44366/Usuario/g', requestLogin.email);
   }
 }
 
-/* vai da run*/
