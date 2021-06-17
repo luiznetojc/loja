@@ -31,7 +31,7 @@ export class ProdutosService {
   }
   // utualiza um produto
   updateProduto(produto: Produtos): Observable<Produtos> {
-    return this.http.put<Produtos>(this.URL_API + '/' + produto.produto_id, JSON.stringify(produto), this.httpOptions)
+    return this.http.put<Produtos>(this.URL_API + '/' + produto.idproduto, JSON.stringify(produto), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -40,7 +40,7 @@ export class ProdutosService {
 
   // deleta um produto
   deleteProduto(produto: Produtos) {
-    return this.http.delete<Produtos>(this.URL_API + '/' + produto.produto_id, this.httpOptions)
+    return this.http.delete<Produtos>(this.URL_API + '/' + produto.idproduto, this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.handleError)

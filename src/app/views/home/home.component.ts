@@ -19,9 +19,6 @@ export class HomeComponent implements OnInit {
   goToPedidoslist(): void {
     this.router.navigate(['pedidoslist'])
   }
-  goToCadastro(): void {
-    this.router.navigate(['cadastro'])
-  }
   logout(): void {
     this.LoginSvc.removeAuthorizationToken();
     this.router.navigate(['login'])

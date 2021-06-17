@@ -12,19 +12,18 @@ import { NgForm } from '@angular/forms';
 export class ProdutosComponent implements OnInit {
   filter!: string;
   title = 'loja';
-  constructor(private produtosSvc: ProdutosService) {}
-    allProdutos!: Observable<any>;
-    selecaoProdutos!: Array<Produtos>; 
-    produto = {} as Produtos;
+  constructor(private produtosSvc: ProdutosService) { }
+  allProdutos!: Observable<any>;
+  selecaoProdutos!: Array<Produtos>;
+  produto = {} as Produtos;
   ngOnInit(): void {
     this.getAllProdutos();
   }
-  getAllProdutos()
-  {
+  getAllProdutos() {
     this.allProdutos = this.produtosSvc.getAllProdutos();
   }
   saveProduto(form: NgForm) {
-    if (this.produto.produto_id !== undefined) {
+    if (this.produto.idproduto !== undefined) {
       this.produtosSvc.updateProduto(this.produto).subscribe(() => {
         this.cleanForm(form);
       });

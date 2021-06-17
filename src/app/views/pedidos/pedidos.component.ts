@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { PedidoItem } from 'src/app/modelos/pedido-item';
 import { Produtos } from 'src/app/modelos/produtos';
@@ -27,9 +28,9 @@ export class PedidosComponent implements OnInit {
   }]);
   public paginaAtual = 1;
   selecaoProdutos = Array<PedidoItem>();
-  constructor(private produtosSvc: ProdutosService, private PedidosSvc: PedidosService) {
+  constructor(private produtosSvc: ProdutosService, private PedidosSvc: PedidosService, private router: Router) {
     this.cont = 0;
-    this.qtd = 1;
+    this.qtd = 0;
   }
   public search = "";
   allProdutos!: Observable<any>;
@@ -40,8 +41,8 @@ export class PedidosComponent implements OnInit {
   public valid = false;
   public CPF = "";
   ngOnInit(): void {
-    this.getAllProdutos();
-    this.getAllPedidos();
+    // this.getAllProdutos();
+    // this.getAllPedidos();
     this.request.pedido_item.pop();//remove valor de inicialização
   }
   getAllPedidos() {
@@ -54,7 +55,6 @@ export class PedidosComponent implements OnInit {
     if (qtd != 0) {
       this.cont += 1;
       this.temp = {} as PedidoItem;
-      //this.temp.idproduto = produto.produto_id;
       this.temp.idproduto = this.cont;
       this.temp.idpedido_item = this.cont;
       this.temp.descricao_produto = produto.descricao_produto;
@@ -76,27 +76,26 @@ export class PedidosComponent implements OnInit {
   }
   searchProduto() {
     if (this.search.length == 0) {
-      this.getAllProdutos();
+      //this.getAllProdutos();
       return;
     }
-    this.allProdutos = this.produtosSvc.searchProduto(this.search);
+    else if (this.search.length >= 3) {
+
+      this.allProdutos = this.produtosSvc.searchProduto(this.search);
+    }
   }
   addPreco(produto: PedidoItem)// verify usado para dar desconto no preco total caso opçao 1 selecionada
   {
     this.request.valor_pedido += (produto.preco_item) * this.qtd - (0);//desconto 
 
   }
-  addcpf() {
-    this.request.cpf = this.CPF;
-  }
   erasePreco(produto: PedidoItem) {
     this.request.valor_pedido -= (produto.preco_item) * produto.quantidade_item - (0);//desconto
   }
   sendPedidos() {
-    this.request.cpf = "string";
+    this.request.cpf = this.CPF;
     this.request.data_pedido = "2021-05-25T13:54:32.805Z";
-
-    this.PedidosSvc.sendPedido(this.request).subscribe(accept => (console.log(accept)), error => (console.error(error)));
+    this.PedidosSvc.sendPedido(this.request).subscribe(accept => (console.log(accept), this.router.navigate(['pedidoslist'])), error => (console.error(error)));
   }
   clearProdutos() {
     for (let index = 0; index < this.cont; index++) {

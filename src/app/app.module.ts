@@ -14,7 +14,7 @@ import { HomeComponent } from './views/home/home.component';
 import { PedidoslistComponent } from './views/pedidoslist/pedidoslist.component';
 import { NgxPaginationModule } from 'ngx-pagination'; // Módulo da dependência de paginação
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { NgxMaskModule } from 'ngx-mask';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +34,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
