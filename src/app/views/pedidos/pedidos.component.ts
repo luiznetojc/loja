@@ -41,7 +41,7 @@ export class PedidosComponent implements OnInit {
   public valid = false;
   public CPF = "";
   ngOnInit(): void {
-    // this.getAllProdutos();
+    this.getAllProdutos();
     // this.getAllPedidos();
     this.request.pedido_item.pop();//remove valor de inicialização
   }
@@ -76,7 +76,7 @@ export class PedidosComponent implements OnInit {
   }
   searchProduto() {
     if (this.search.length == 0) {
-      //this.getAllProdutos();
+      this.getAllProdutos();
       return;
     }
     else if (this.search.length >= 3) {
@@ -87,10 +87,12 @@ export class PedidosComponent implements OnInit {
   addPreco(produto: PedidoItem)// verify usado para dar desconto no preco total caso opçao 1 selecionada
   {
     this.request.valor_pedido += (produto.preco_item) * this.qtd - (0);//desconto 
+    this.request.valor_pedido = parseFloat(this.request.valor_pedido.toFixed(2));
 
   }
   erasePreco(produto: PedidoItem) {
     this.request.valor_pedido -= (produto.preco_item) * produto.quantidade_item - (0);//desconto
+    this.request.valor_pedido = parseFloat(this.request.valor_pedido.toFixed(2));
   }
   sendPedidos() {
     this.request.cpf = this.CPF;
