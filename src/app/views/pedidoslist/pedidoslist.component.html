@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="card list-produto">
+    <!--  <div class="card list-produto">
         <h5 class="card-header">Lista de Produtos</h5>
         <div class="card-body">
             <table class="table">
@@ -7,24 +7,73 @@
                     <tr>
 
                         <th scope="col">Id</th>
-                        <th scope="col">CPF</th>
+                         <th scope="col">CPF</th>
                         <th scope="col">Data</th>
                         <th scope="col">valor_pedido</th>
                         <th scope="col">valor_desconto</th>
+                        <th scope="col">id</th>
+                        <th scope="col">emissao</th>
+                        <th scope="col">status</th>
+                        <th scope="col">numero</th>
+                        <th scope="col">serie</th>
+                        <th scope="col">chave</th>
+                        <th scope="col">protocolo</th>
+                        <th scope="col">dataAutorizacao</th>
+                        <th scope="col">mensagem</th>
+                        <th scope="col">pdf</th>
+                        <th scope="col">xml</th>
+                        <th scope="col">xmlCancelamento</th>
+                        <th scope="col">dataCancelamento</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let pedidos of allPedidos | async">
-                        <td>{{pedidos.idpedido}}</td>
-                        <td>{{pedidos.cpf}}</td>
-                        <td>{{pedidos.data_pedido}}</td>
-                        <td>{{pedidos.valor_pedido}}</td>
-                        <td>{{pedidos.valor_desconto}}</td>
-                        <td>
+                     <tr *ngFor="let pedidos of allPedidos | async">
+<td>{{Pedidos.idpedido}}</td>
+                        <td>{{Pedidos.cpf}}</td>
+                        <td>{{Pedidos.data_pedido}}</td>
+                        <td>{{Pedidos.valor_pedido}}</td>
+                        <td>{{Pedidos.id}}</td>
+                        <td>{{Pedidos.emissao}}</td>
+                        <td>{{Pedidos.status}}</td>
+                        <td>{{Pedidos.numero}}</td>
+                        <td>{{Pedidos.serie}}</td>
+                        <td>{{Pedidos.chave}}</td>
+                        <td>{{Pedidos.protocolo}}</td>
+                        <td>{{Pedidos.dataAutorizacao}}</td>
+                        <td>{{Pedidos.mensagem}}</td>
+                        <td>{{Pedidos.pdf}}</td>
+                        <td>{{Pedidos.xml}}</td>
+                        <td>{{Pedidos.xmlCancelamento}}</td>
+                        <td>{{Pedidos.dataCancelamento}}</td>
 
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+
+</tr>
+</tbody>
+</table>
+</div> -->
+
+    <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+        <ngb-panel title="Simple">
+            <ng-template ngbPanelHeader>
+                    <table>
+                        <td style="width: 200px;"><b>{{Pedidos.data_pedido}}</b></td>
+                        <td style="width: 200px;"><b>{{Pedidos.status}}</b></td>
+                    </table>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <tr>{{Pedidos.emissao}}</tr>
+                <tr>{{Pedidos.status}}</tr>
+                <tr>{{Pedidos.numero}}</tr>
+                <tr>{{Pedidos.serie}}</tr>
+                <tr>{{Pedidos.chave}}</tr>
+                <tr>{{Pedidos.protocolo}}</tr>
+                <tr>{{Pedidos.dataAutorizacao}}</tr>
+                <tr>{{Pedidos.mensagem}}</tr>
+                <tr>{{Pedidos.pdf}}</tr>
+                <tr>{{Pedidos.xml}}</tr>
+                <tr>{{Pedidos.xmlCancelamento}}</tr>
+                <tr>{{Pedidos.dataCancelamento}}</tr>
+            </ng-template>
+        </ngb-panel>
+
+    </ngb-accordion>

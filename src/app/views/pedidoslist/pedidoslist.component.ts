@@ -11,12 +11,17 @@ import { PedidosService } from 'src/app/services/pedidos.service';
 export class PedidoslistComponent implements OnInit {
 
   constructor(private pedidosSvc: PedidosService) { }
-  allPedidos!: Observable<any>;
+  allPedidos!: Promise<any>;
+  Pedidos!: ResponsePedido;
+  id = 1;
   ngOnInit(): void {
     this.getAllPedidos();
   }
   getAllPedidos() {
-    this.allPedidos = this.pedidosSvc.getAllPedidos();
+    this.pedidosSvc.getPedidosNfce(this.id).subscribe((response: ResponsePedido) => {
+      this.Pedidos = response;
+    });
+    console.log();
   }
 
 }

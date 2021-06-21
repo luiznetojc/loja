@@ -27,13 +27,13 @@
           <!--     <!--    <nav class="navbar">
                 <input class="form-control" type="text" name="search" [(ngModel)]="filter"/>
               </nav> -->
-          <tr *ngFor="let produtos of allProdutos | async | paginate : { itemsPerPage: 5, currentPage: paginaAtual }">
+          <tr *ngFor="let produtos of allProdutos | async | paginate : { itemsPerPage: 5, currentPage: paginaAtual };let i = index;">
             <td>{{produtos.idproduto}}</td>
             <td>{{produtos.descricao_produto}}</td>
             <td>{{produtos.unidade_medida}}</td>
             <td>{{produtos.preco_venda}}</td>
-            <td> <input type="text" class="form-control input-sm" style="width: 100px;" placeholder="Quantidade"
-                [(ngModel)]="qtd" aria-label="Quantidade"></td>
+            <td> <input #qtdInput type="text" class="form-control input-sm" style="width: 100px;" placeholder="Quantidade"
+                [(ngModel)]="qtd" name="{{i}}" min="{{i}}" id="{{i}}"></td>
             <td>
               <button class="btn btn-primary " (click)="selectProduto(produtos,qtd)" type="button">Adicionar</button>
             </td>

@@ -13,6 +13,7 @@ export class PedidosService {
 
   //URL_API = 'http://n3solucoes.zapto.org:9999/api/produtos';
   URL_API = 'http://localhost:27109/api/v1/pedido';
+  URL_API2 = 'http://localhost:27109/api/v1/ConsultaNfce/1';
   constructor(private http: HttpClient) { }
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Basic my-auth-token' })
@@ -21,6 +22,9 @@ export class PedidosService {
   //pegaro todos os pedidos
   getAllPedidos(): Observable<ResponsePedido> {
     return this.http.get<ResponsePedido>(this.URL_API).pipe(retry(2), catchError(this.handleError))
+  }
+  getPedidosNfce(id: number): Observable<ResponsePedido> {
+    return this.http.get<ResponsePedido>(this.URL_API2).pipe(retry(2), catchError(this.handleError))
   }
   //Enviar pedido para API
   sendPedido(request: RequestPedido): Observable<ResponsePedido> {

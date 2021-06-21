@@ -16,11 +16,11 @@ const routes: Routes = [
       { path: 'produtos', component: ProdutosComponent },
       { path: 'pedidos', component: PedidosComponent },
       { path: 'pedidoslist', component: PedidoslistComponent },
-      { path: 'cadastro', component: CadastroComponent },
+
     ],
     canActivate: [AuthGuard]
   },
-
+  { path: 'cadastro', component: CadastroComponent },
   { path: 'login', component: LoginComponent },
 ];
 
