@@ -116,5 +116,10 @@ export class PedidosComponent implements OnInit {
     this.cont -= 1;
     this.isValid();
   }
-
+  inputFile(file: any)
+  {
+    if(file.target.files && file.target.files[0]){
+      const txt = file.target.files[0];
+  }
+}
 }

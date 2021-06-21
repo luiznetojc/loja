@@ -1,11 +1,19 @@
 <div class="container-fluid">
   <div class="card list-produto">
     <h5 class="card-header">
-      <input type="text" class="form-control" style="width: 500px;" placeholder="Buscar..." [(ngModel)]="search"
-        aria-label="Buscar..." (change)="searchProduto()">
+      <table>
+        <tr>
+          <td>
+            <input type="text" class="form-control" style="width: 500px;" placeholder="Buscar..." [(ngModel)]="search"
+              aria-label="Buscar..." (change)="searchProduto()">
+          </td>
+          <td>
+            <input type="file" (change)="inputFile($event)"/>
+          </td>
+        </tr>
+      </table>
       <!-- <button type="button" class="btn btn-danger btn-sm ml-1" (click)="searchProduto()">Buscar</button> -->
     </h5>
-
     <div class="card-body">
 
       <table class="table">
