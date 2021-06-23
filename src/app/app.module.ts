@@ -16,6 +16,8 @@ import { NgxPaginationModule } from 'ngx-pagination'; // Módulo da dependência
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+//import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +40,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     NgxMaskModule.forRoot(),
     NgbModule,
+   // MatSelectModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent, PedidoslistComponent]

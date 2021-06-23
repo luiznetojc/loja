@@ -8,12 +8,6 @@
               aria-label="Buscar..." (change)="searchProduto()">
           </td>
           <td>
-            <div class="input-group input-group-sm mb-3">
-            <div class="custom-file">
-              <input type="file" (change)="inputFile($event)" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01-sm">
-              <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-            </div>
-          </div>
           </td>
         </tr>
       </table>
@@ -113,15 +107,28 @@
             <td><input type="text" class="form-control mr-sm-2" style="width: 200px;margin-bottom: 10px;"
                 placeholder="CPF" [(ngModel)]="CPF" aria-label="CPF" mask="000.000.000-99"></td>
             <td>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
+              <div style="width: 150px;" class="input-group mb-3">
+               <!--  <div class="input-group-prepend">
                   <label class="input-group-text" for="inputGroupSelect01">Pagamento</label>
-                </div>
-                <select class="custom-select" id="inputGroupSelect01">
-                  <option selected>Escolher</option>
+                </div> -->
+                <mat-form-field>  
+                  <mat-label>select</mat-label>
+                  <!-- <mat-select [(value)]="selected"></mat-select> -->
+                </mat-form-field>
+
+                <select class="custom-select" id="inputGroupSelect01"  (onChange)="selectPagamento($event)">
+                  <option selected>Pagamento</option>
                   <option value="1">Dinheiro</option>
-                  <option value="2">Cartão</option>
+                  <option value="2">Cartao</option>
                 </select>
+              </div>
+            </td>
+            <td>
+              <div style="width: 150px;" class="input-group input-group-sm mb-3">
+                <div class="custom-file">
+                  <input type="file" (change)="inputFile($event)" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01-sm">
+                  <label class="custom-file-label" for="inputGroupFile01">Arquivo json</label>
+                </div>
               </div>
             </td>
           </tr>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { PedidoItem } from 'src/app/modelos/pedido-item';
+import { PedidoPagamentos } from 'src/app/modelos/pedido-pagamentos';
 import { Produtos } from 'src/app/modelos/produtos';
 import { RequestPedido } from 'src/app/modelos/request-pedido';
 import { PedidosService } from 'src/app/services/pedidos.service';
@@ -25,6 +26,11 @@ export class PedidosComponent implements OnInit {
     preco_item: 0,
     preco_desconto_item: 0,
     quantidade_item: 0
+  }],[{
+    idpedido_pagamento: 0,
+            idpedido: 0,
+            tipo_pagamento: "1",
+            valor_pagamento: 0
   }]);
   public paginaAtual = 1;
   selecaoProdutos = Array<PedidoItem>();
@@ -99,6 +105,15 @@ export class PedidosComponent implements OnInit {
     this.request.data_pedido = "2021-05-25T13:54:32.805Z";
     this.PedidosSvc.sendPedido(this.request).subscribe(accept => (console.log(accept), this.router.navigate(['pedidoslist'])), error => (console.error(error)));
   }
+  pagamento!: PedidoPagamentos;
+  values= '1 2 3'.split(' ');
+  selectPagamento(tipo: any)
+  {
+    this.pagamento = {} as PedidoPagamentos;
+    this.pagamento.tipo_pagamento = tipo;
+    this.request.pedido_pagamentos.push(this.pagamento);
+    console.log(tipo);
+  }
   clearProdutos() {
     for (let index = 0; index < this.cont; index++) {
       this.request.pedido_item.pop()
@@ -119,7 +134,7 @@ export class PedidosComponent implements OnInit {
   inputFile(file: any)
   {
     if(file.target.files && file.target.files[0]){
-      const txt = file.target.files[0];
+      const txt = file.target.files[0];//falta enviar a API
   }
 }
 }
