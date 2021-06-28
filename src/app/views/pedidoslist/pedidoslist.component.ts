@@ -23,5 +23,13 @@ export class PedidoslistComponent implements OnInit {
     });
     console.log();
   }
+  getPDF()
+  {
+
+  }
+  getXML()
+  {
+    
+  }
 
 }

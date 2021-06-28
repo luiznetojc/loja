@@ -67,6 +67,8 @@
                         <td style="width: 100px;"> <button ngbPanelToggle class="btn btn btn-outline-primary ml-2">Abrir</button></td>
                         <td style="width: 200px;"><b>{{Pedidos.data_pedido}}</b></td>
                         <td style="width: 200px;"><b>{{Pedidos.status}}</b></td>
+                        <td style="padding-left: 280px;"> <button (click)="getPDF()" class="btn btn btn-outline-success ml-2">Baixar PDF</button></td>
+                        <td ><button (click)="getXML()"class="btn btn btn-outline-success ml-2">Baixar XML</button></td>
                     </table>
             </ng-template>
             <ng-template ngbPanelContent>
