@@ -8,10 +8,11 @@
               aria-label="Buscar..." (change)="searchProduto()">
           </td>
           <td>
+            <button (click)="searchProduto()"class="btn btn btn-outline-primary ml-2">Buscar</button>
           </td>
         </tr>
       </table>
-      <!-- <button type="button" class="btn btn-danger btn-sm ml-1" (click)="searchProduto()">Buscar</button> -->
+
     </h5>
     <div class="card-body">
 
@@ -54,10 +55,10 @@
     </div>
   </div>
   <div class="card list-produto">
-    <span class="name"><b>Preço Total: {{request.valor_pedido}}</b></span>
     <!-- <h5 class="card-header"><span class="name">Lista de pedidos</span> 
     </h5> -->
     <div class="card-body">
+      <div style="font-size: 20px; width:200px;"><b>Preço Total: {{request.valor_pedido}}</b></div>
       <table class="table">
         <thead>
           <tr>
