@@ -108,20 +108,17 @@
             <td><input type="text" class="form-control mr-sm-2" style="width: 200px;margin-bottom: 10px;"
                 placeholder="CPF" [(ngModel)]="CPF" aria-label="CPF" mask="000.000.000-99"></td>
             <td>
-              <div style="width: 150px;" class="input-group mb-3">
+              <div style="width: 190px;" class="input-group mb-3">
                <!--  <div class="input-group-prepend">
                   <label class="input-group-text" for="inputGroupSelect01">Pagamento</label>
                 </div> -->
                 <mat-form-field>  
                   <mat-label>select</mat-label>
-                  <!-- <mat-select></mat-select> -->
+                  <mat-select>
+                    <mat-option>1</mat-option>
+                  </mat-select>
                 </mat-form-field>
 
-                <select class="custom-select" id="inputGroupSelect01"  (onChange)="selectPagamento($event)">
-                  <option selected>Pagamento</option>
-                  <option value="1">Dinheiro</option>
-                  <option value="2">Cartao</option>
-                </select>
               </div>
             </td>
             <td>
