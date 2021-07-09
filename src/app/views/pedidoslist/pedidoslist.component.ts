@@ -18,6 +18,7 @@ export class PedidoslistComponent implements OnInit {
    // this.getAllPedidos();
    this.formatDatetoSend();
    this.searchPedido();
+
   }
   //getAllPedidos() {
    // this.pedidosSvc.getPedidosNfce(this.id).subscribe((response: ResponsePedido) => {
@@ -25,9 +26,10 @@ export class PedidoslistComponent implements OnInit {
    // });
    // console.log();
   //}
-  getPDF()
+ 
+  getPDF(url: string)
   {
-
+    this.pedidosSvc.getPDF(url).subscribe((res:any)=> console.log(res));
   }
   getXML()
   {

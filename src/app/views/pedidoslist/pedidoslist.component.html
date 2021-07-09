@@ -55,10 +55,10 @@
 <h5 class="card-header-sm">
 
     <div class="form-group">
-        <tr><label for="date"><b> </b></label></tr>
-        <tr><input style="margin-left: 50px;" type="date" class="form-control-sm" id="date" [(ngModel)]="data"></tr>
+        <td><label for="date"><b> </b></label></td>
+        <td><input style="margin-left: 50px; margin-top: 20px;" type="date" class="form-control-sm" id="date" [(ngModel)]="data"></td>
 
-        <tr><button (click)="searchPedido()"class="btn btn btn-outline-success ml-2">Buscar</button></tr>
+        <td><button style="margin-left: 50px;" (click)="searchPedido()"class="btn btn btn-outline-success ml-2">Buscar</button></td>
     </div>
 </h5>
     <div class="card-body">
@@ -69,8 +69,9 @@
                     <table>
                         <td style="width: 100px;"> <button ngbPanelToggle class="btn btn btn-outline-primary ml-2">Abrir</button></td>
                         <td style="width: 200px;"><b>{{Pedidos.data_pedido}}</b></td>
-                        <td style="width: 200px;"><b>{{Pedidos.status}}</b></td>
-                        <td style="padding-left: 280px;"> <button (click)="getPDF()" class="btn btn btn-outline-success ml-2">Baixar PDF</button></td>
+                        <td style="width: 100px;"><b>{{Pedidos.status}}</b></td>
+                        <td style="width: 100px;"><b>{{Pedidos.valor_pedido}}</b></td>
+                        <td style="padding-left: 280px;"> <button (click)="getPDF('https://api.plugnotas.com.br/nfce/60be822b21843474aa053d80/pdf')" class="btn btn btn-outline-success ml-2">Baixar PDF</button></td>
                         <td ><button (click)="getXML()"class="btn btn btn-outline-success ml-2">Baixar XML</button></td>
                     </table>
             </ng-template>
