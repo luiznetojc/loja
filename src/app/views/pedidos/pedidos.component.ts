@@ -107,12 +107,13 @@ export class PedidosComponent implements OnInit {
   }
   pagamento!: PedidoPagamentos;
   values= '1 2 3'.split(' ');
-  selectPagamento(tipo: any)
+  tipo = "1";
+  selectPagamento()
   {
     this.pagamento = {} as PedidoPagamentos;
-    this.pagamento.tipo_pagamento = tipo;
+    this.pagamento.tipo_pagamento = this.tipo;
     this.request.pedido_pagamentos.push(this.pagamento);
-    console.log(tipo);
+    console.log(this.tipo);
   }
   clearProdutos() {
     for (let index = 0; index < this.cont; index++) {

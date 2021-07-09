@@ -56,12 +56,15 @@
 
     <div class="form-group">
         <tr><label for="date"><b> </b></label></tr>
-        <tr><input style="margin-left: 50px;"type="date" class="form-control-sm" id="date"></tr>
+        <tr><input style="margin-left: 50px;" type="date" class="form-control-sm" id="date" [(ngModel)]="data"></tr>
+
+        <tr><button (click)="searchPedido()"class="btn btn btn-outline-success ml-2">Buscar</button></tr>
     </div>
 </h5>
     <div class="card-body">
     <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-        <ngb-panel title="Simple">
+
+        <ngb-panel title="Simple" *ngFor="let Pedidos of allPedidos | async">
             <ng-template ngbPanelHeader>
                     <table>
                         <td style="width: 100px;"> <button ngbPanelToggle class="btn btn btn-outline-primary ml-2">Abrir</button></td>

@@ -112,10 +112,11 @@
                <!--  <div class="input-group-prepend">
                   <label class="input-group-text" for="inputGroupSelect01">Pagamento</label>
                 </div> -->
-                <mat-form-field>  
-                  <mat-label>select</mat-label>
-                  <mat-select>
-                    <mat-option>1</mat-option>
+                <mat-form-field appearance="fill">  
+                  <mat-label>Tipo de Pagamento</mat-label>
+                  <mat-select [(value)]="tipo">
+                    <mat-option value="1">Dinheiro</mat-option>
+                    <mat-option value="2">Cartão</mat-option>
                   </mat-select>
                 </mat-form-field>
 
