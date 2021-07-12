@@ -11,25 +11,22 @@ import {formatDate } from '@angular/common';
 export class PedidoslistComponent implements OnInit {
 
   constructor(private pedidosSvc: PedidosService) { }
-  //allPedidos!: Promise<any>;
   allPedidos!: Observable<any>;
   id = 1;
   ngOnInit(): void {
-   // this.getAllPedidos();
+
    this.formatDatetoSend();
    this.searchPedido();
 
   }
-  //getAllPedidos() {
-   // this.pedidosSvc.getPedidosNfce(this.id).subscribe((response: ResponsePedido) => {
-     // this.Pedidos = response;
-   // });
-   // console.log();
-  //}
- 
+
   getPDF(url: string)
   {
-    this.pedidosSvc.getPDF(url).subscribe((res:any)=> console.log(res));
+  var res = this.pedidosSvc.getPdfReport(url);
+  res.subscribe( res => {
+    const fileURL = URL.createObjectURL(res);
+    window.open(fileURL, '_blank');
+    })
   }
   getXML()
   {
@@ -44,8 +41,8 @@ export class PedidoslistComponent implements OnInit {
   searchPedido()
   {
     this.formatDatetoSend();
-    console.log(this.dataString.substring(0,10));
     this.allPedidos = this.pedidosSvc.getPedidosbyData(this.dataString.substring(0,10));
+
   }
 
 }

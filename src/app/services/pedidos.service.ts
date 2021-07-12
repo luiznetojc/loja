@@ -1,8 +1,8 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { Observable } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError, map, retry } from 'rxjs/operators';
 import { RequestPedido } from '../modelos/request-pedido';
 import { ResponsePedido } from '../modelos/response-pedido'
 
@@ -17,7 +17,7 @@ export class PedidosService {
   URL_API_C = 'http://localhost:27109/api/v1/ConsultaPedido/PesquisaPorData'
   constructor(private http: HttpClient) { }
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'blob', 'Authorization': '96b4f8b9-91b7-4581-b200-4ae4dae2110e' })
+    headers: new HttpHeaders({ 'x-api-key': '96b4f8b9-91b7-4581-b200-4ae4dae2110e' })
   }
 
   //pegaro todos os pedidos
@@ -35,9 +35,18 @@ export class PedidosService {
   {
     return this.http.get<ResponsePedido>(this.URL_API_C + '/'+ data).pipe(retry(2), catchError(this.handleError))
   }
+  getPdfReport(url: string) {
+    const headers = new HttpHeaders().set('x-api-key', '96b4f8b9-91b7-4581-b200-4ae4dae2110e');
+    return this.http.get(url,{headers, responseType: 'blob'}).pipe(
+      map((res: any) => {
+        return new Blob([res], { type: 'application/pdf' });
+      })
+    );
+    
+  }
   getPDF(url: string) 
   {
-    return this.http.get(url,this.httpOptions).pipe(retry(2), catchError(this.handleError))
+    return this.http.get(url,this.httpOptions)
    // window.open(url,'_blank')
   }
   
