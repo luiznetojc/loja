@@ -4,38 +4,74 @@
 
     <div class="form-group">
         <td><label for="date"><b> </b></label></td>
-        <td><input style="margin-left: 50px; margin-top: 20px;" type="date" class="form-control-sm" id="date" [(ngModel)]="data"></td>
+        <td><input style="margin-left: 50px; margin-top: 20px;" type="date" class="form-control-sm" id="date" [(ngModel)]="data" (change)="searchPedido()"></td>
         <td><button style="margin-left: 50px;" (click)="searchPedido()"class="btn btn btn-outline-success ml-2">Buscar</button></td>
     </div>
 </h5>
     <div class="card-body">
+        <div style="margin-left: 20px;">
+        <table>
+
+            <thead>
+                <tr>
+                    <th scope="col" style="width: 100px;">Id:</th>
+                    <th scope="col" style="width: 200px;">Data:</th>
+                    <th scope="col" style="width: 100px;">valor:</th>
+                    <th scope="col" style="width: 100px;">status:</th>
+                </tr>
+            </thead>
+        </table>
+        </div>
     <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
 
         <ngb-panel title="Simple" *ngFor="let Pedidos of allPedidos | async">
             <ng-template ngbPanelHeader>
                     <table>
-                        <td style="width: 100px;"> <button ngbPanelToggle class="btn btn btn-outline-primary ml-2">Abrir</button></td>
-                        <td style="width: 100px;"><b>{{Pedidos.idpedido}}</b></td>
-                        <td style="width: 200px;"><b>{{Pedidos.data_pedido}}</b></td>
-                        <td style="width: 100px;"><b>{{Pedidos.status}}</b></td>
-                        <td style="width: 100px;"><b>{{Pedidos.valor_pedido}}</b></td>
-                        <td style="padding-left: 280px;"> <button (click)="getPDF(Pedidos.pdf)" class="btn btn btn-outline-success ml-2">Baixar PDF</button></td>
-                        <td ><button (click)="getXML()"class="btn btn btn-outline-success ml-2">Baixar XML</button></td>
+                        <td style="padding-left: auto;"><b>{{Pedidos.idpedido}}</b></td>
+                        <td style="padding-left: 90px;"><b>{{Pedidos.data_pedido}}</b></td>
+                        <td style="padding-left: 75px;"><b>{{Pedidos.valor_pedido}}</b></td>
+                        <td style="padding-left: 80px;"><b>{{Pedidos.status}}</b></td>
+                        <td style="padding-left: 180px;"> <button ngbPanelToggle class="btn btn btn-outline-primary ml-2">Abrir</button></td>
+                        <td><button (click)="getPDF(Pedidos.pdf)" class="btn btn btn-outline-success ml-2">Situação</button></td>
+                        <td><button (click)="getPDF(Pedidos.pdf)" class="btn btn btn-outline-success ml-2">PDF</button></td>
+                        <td><button (click)="getXML(Pedidos.xml)"class="btn btn btn-outline-success ml-2">XML</button></td>
+                        <td><button (click)="cancelarNota(Pedidos.xmlCancelamento)"class="btn btn btn-outline-success ml-2">Cancelar</button></td>
                     </table>
             </ng-template>
             <ng-template ngbPanelContent>
-                <tr>{{Pedidos.emissao}}</tr>
-                <tr>{{Pedidos.status}}</tr>
-                <tr>{{Pedidos.numero}}</tr>
-                <tr>{{Pedidos.serie}}</tr>
-                <tr>{{Pedidos.chave}}</tr>
-                <tr>{{Pedidos.protocolo}}</tr>
-                <tr>{{Pedidos.dataAutorizacao}}</tr>
-                <tr>{{Pedidos.mensagem}}</tr>
-                <tr>{{Pedidos.pdf}}</tr>
-                <tr>{{Pedidos.xml}}</tr>
-                <tr>{{Pedidos.xmlCancelamento}}</tr>
-                <tr>{{Pedidos.dataCancelamento}}</tr>
+                <td>{{Pedidos.mensagem}}</td>
+                <td>{{Pedidos.emissao}}</td>
+                <td>{{Pedidos.protocolo}}</td>
+                <td>{{Pedidos.numero}}</td>
+                <td>{{Pedidos.serie}}</td>
+                <td>{{Pedidos.chave}}</td>
+                <td>{{Pedidos.dataAutorizacao}}</td>
+                <td>{{Pedidos.dataCancelamento}}</td>
+                <td><button (click)="searchProdutobyId(Pedidos.idpedido)" class="btn btn btn-outline-success ml-2">Produtos</button></td>
+                <div>
+
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 100px;">Id</th>
+                            <th scope="col" style="width: 700px;">Descrição</th>
+                            <th scope="col">Preço</th>
+                            <th scope="col">Desconto</th>
+                            <th scope="col">Qtd</th>
+                            <th scope="col">Ações</th>
+                            <th scope="col" style="width: 200px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let Produtos of  allPedidos | async">
+                            <td>{{Produtos.idproduto}}</td>
+                            <td>{{Produtos.descricao_produto}}</td>
+                            <td>{{Produtos.preco_item}}</td>
+                            <td>{{Produtos.preco_desconto_item}}</td>
+                            <td>{{Produtos.quantidade_item}}</td>
+                        </tr>
+                    </tbody>
+                </div>
+                
             </ng-template>
         </ngb-panel>
 

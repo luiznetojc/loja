@@ -12,10 +12,7 @@ export class LoginService {
 
   constructor(private httpClient: HttpClient) { }
   Url = 'http://localhost:27109/api/v1/usuario/login';
-  //Url = 'https://localhost:44366/Usuario/P';
-  //httpOptions = {
-  //  headers: new HttpHeaders({ 'Content-Type': 'application/json','Authorization': 'Bearer my-auth-token' })
-  // }
+  
 
   async doLogin(requestLogin: RequestLogin) {
     const result = await this.httpClient.post<any>(this.Url, requestLogin).toPromise();
@@ -62,8 +59,6 @@ export class LoginService {
   removeAuthorizationToken() {
     window.localStorage.removeItem('token');
   }
-  dopost(requestLogin: RequestLogin): Observable<Responselogin> {
-    return this.httpClient.post<Responselogin>('https://localhost:44366/Usuario/g', requestLogin.email);
-  }
+ 
 }
 

@@ -35,7 +35,8 @@ export class PedidosService {
   {
     return this.http.get<ResponsePedido>(this.URL_API_C + '/'+ data).pipe(retry(2), catchError(this.handleError))
   }
-  getPdfReport(url: string) {
+  getPdfReport(url: string) 
+  {
     const headers = new HttpHeaders().set('x-api-key', '96b4f8b9-91b7-4581-b200-4ae4dae2110e');
     return this.http.get(url,{headers, responseType: 'blob'}).pipe(
       map((res: any) => {
@@ -43,11 +44,6 @@ export class PedidosService {
       })
     );
     
-  }
-  getPDF(url: string) 
-  {
-    return this.http.get(url,this.httpOptions)
-   // window.open(url,'_blank')
   }
   
   // Manipulação de erros

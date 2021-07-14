@@ -10,6 +10,7 @@ import { Produtos } from '../modelos/produtos';
 export class ProdutosService {
   //URL_API = 'http://n3solucoes.zapto.org:9999/api/produtos';
   URL_API = 'http://localhost:27109/api/v1/produto';
+  URL_API_B = '/api/v1/ConsultaPedido/PesquisaItemPedido/;'
   constructor(private http: HttpClient) { }
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Basic my-auth-token' })
@@ -24,6 +25,11 @@ export class ProdutosService {
   }
   getProdutoById(id: number): Observable<Produtos> {
     return this.http.get<Produtos>(this.URL_API + '/' + id).pipe(retry(2), catchError(this.handleError))
+  }
+  getProdutosById(id:string):Observable<Produtos>
+  {
+
+    return this.http.get<Produtos>(this.URL_API_B + id).pipe(retry(2),catchError(this.handleError))
   }
   //salvar um produto
   saveProduto(produto: Produtos): Observable<Produtos> {

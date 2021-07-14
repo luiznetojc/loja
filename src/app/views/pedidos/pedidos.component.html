@@ -12,10 +12,8 @@
           </td>
         </tr>
       </table>
-
     </h5>
     <div class="card-body">
-
       <table class="table">
         <thead>
           <tr>
@@ -25,16 +23,9 @@
             <th scope="col">Preço</th>
             <th scope="col">Quantidade</th>
             <th scope="col">Ações</th>
-
-
-
-
           </tr>
         </thead>
         <tbody>
-          <!--     <!--    <nav class="navbar">
-                <input class="form-control" type="text" name="search" [(ngModel)]="filter"/>
-              </nav> -->
           <tr *ngFor="let produtos of allProdutos | async | paginate : { itemsPerPage: 5, currentPage: paginaAtual };let i = index;">
             <td>{{produtos.idproduto}}</td>
             <td>{{produtos.descricao_produto}}</td>
@@ -47,16 +38,12 @@
             </td>
           </tr>
         </tbody>
-        <!-- Restante do código -->
-
       </table>
       <pagination-controls (pageChange)="paginaAtual = $event" previousLabel="Anterior" nextLabel="Próximo">
       </pagination-controls>
     </div>
   </div>
   <div class="card list-produto">
-    <!-- <h5 class="card-header"><span class="name">Lista de pedidos</span> 
-    </h5> -->
     <div class="card-body">
       <div style="font-size: 20px; width:200px;"><b>Preço Total: {{request.valor_pedido}}</b></div>
       <table class="table">
@@ -70,35 +57,24 @@
             <th scope="col">Ações</th>
             <th scope="col" style="width: 200px;">
               <div *ngIf="valid != false">
-                <!--  <button style="margin-right: 10px ;" type="button" class="btn btn-success"
-                  (click)="sendPedidos()">Enviar</button>
-                <button type="button" class="btn btn-danger" (click)="clearProdutos()">Limpar</button> -->
               </div>
             </th>
           </tr>
         </thead>
         <tbody>
-
-          <!--    <nav class="navbar">
-                <input class="form-control" type="text" name="search" [(ngModel)]="filter"/>
-              </nav> -->
           <tr *ngFor="let Produtos of  request.pedido_item">
             <td>{{Produtos.idproduto}}</td>
             <td>{{Produtos.descricao_produto}}</td>
             <td>{{Produtos.preco_item}}</td>
             <td>{{Produtos.preco_desconto_item}}</td>
             <td>{{Produtos.quantidade_item}}</td>
-
-
             <td>
               <button type="button" class="btn btn-danger btn-sm ml-1"
                 (click)="deleteProduto(Produtos)">Deletar</button>
             </td>
           </tr>
         </tbody>
-
         <table>
-
           <tr>
             <div *ngIf="valid != false">
               <td><button style="margin-right: 10px ;" type="button" class="btn btn-success"
@@ -109,9 +85,6 @@
                 placeholder="CPF" [(ngModel)]="CPF" aria-label="CPF" mask="000.000.000-99"></td>
             <td>
               <div style="width: 190px;" class="input-group mb-3">
-               <!--  <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputGroupSelect01">Pagamento</label>
-                </div> -->
                 <mat-form-field appearance="fill">  
                   <mat-label>Tipo de Pagamento</mat-label>
                   <mat-select [(value)]="tipo">
@@ -119,7 +92,6 @@
                     <mat-option value="2">Cartão</mat-option>
                   </mat-select>
                 </mat-form-field>
-
               </div>
             </td>
             <td>
