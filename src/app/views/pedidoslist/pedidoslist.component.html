@@ -48,21 +48,19 @@
                 <td>{{Pedidos.dataAutorizacao}}</td>
                 <td>{{Pedidos.dataCancelamento}}</td>
                 <td><button (click)="searchProdutobyId(Pedidos.idpedido)" class="btn btn btn-outline-success ml-2">Produtos</button></td>
-                <div>
-
+                <div class="card list-produtos">
+                    <table>
                     <thead>
                         <tr>
                             <th scope="col" style="width: 100px;">Id</th>
-                            <th scope="col" style="width: 700px;">Descrição</th>
-                            <th scope="col">Preço</th>
-                            <th scope="col">Desconto</th>
-                            <th scope="col">Qtd</th>
-                            <th scope="col">Ações</th>
-                            <th scope="col" style="width: 200px;"></th>
+                            <th scope="col" style="width: 100px;">Descrição</th>
+                            <th scope="col" style="width: 100px;">Preço</th>
+                            <th scope="col" style="width: 100px;">Desconto</th>
+                            <th scope="col" style="width: 100px;">Qtd</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let Produtos of  allPedidos | async">
+                        <tr *ngFor="let Produtos of  allProdutos | async">
                             <td>{{Produtos.idproduto}}</td>
                             <td>{{Produtos.descricao_produto}}</td>
                             <td>{{Produtos.preco_item}}</td>
@@ -70,6 +68,7 @@
                             <td>{{Produtos.quantidade_item}}</td>
                         </tr>
                     </tbody>
+                </table>
                 </div>
                 
             </ng-template>

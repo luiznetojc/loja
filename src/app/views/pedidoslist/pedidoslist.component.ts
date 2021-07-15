@@ -50,7 +50,7 @@ export class PedidoslistComponent implements OnInit {
         data.data_pedido = this.formatDate(data.data_pedido);
       } )
   }
-  searchProdutobyId(id: string)
+  searchProdutobyId(id: number)
   {
     this.allProdutos = this.ProdutosSvc.getProdutosById(id);
   }
