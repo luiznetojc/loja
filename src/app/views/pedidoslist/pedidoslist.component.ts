@@ -20,9 +20,13 @@ export class PedidoslistComponent implements OnInit {
    this.searchPedido();
 
   }
+  reloadPedido(id:string)
+  {
+    this.searchPedido();
+  }
   cancelarNota(url:string)
   {
-
+ this.pedidosSvc.cancelarNota(url);
   }
   getPDF(url: string)
   {
@@ -34,7 +38,11 @@ export class PedidoslistComponent implements OnInit {
   }
   getXML(url: string)
   {
-    
+    var res = this.pedidosSvc.getXmlReport(url);
+    res.subscribe( res => {
+    const fileURL = URL.createObjectURL(res);
+    window.open(fileURL, '_blank');
+    })
   }
   data = new Date();
   dataString = "";
@@ -57,8 +65,7 @@ export class PedidoslistComponent implements OnInit {
   searchPedido()
   {
     this.dataString = this.formatDate(this.dataString);
-    //this.allPedidos = this.pedidosSvc.getPedidosbyData(this.dataString.substring(0,10));
-    this.allPedidos = this.pedidosSvc.getPedidosbyData("17-05-2021");
+    this.allPedidos = this.pedidosSvc.getPedidosbyData(this.dataString.substring(0,10));
     this.formatDatePedidos();
   }
 

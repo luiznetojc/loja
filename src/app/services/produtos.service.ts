@@ -8,36 +8,34 @@ import { Produtos } from '../modelos/produtos';
   providedIn: 'root'
 })
 export class ProdutosService {
-  //URL_API = 'http://n3solucoes.zapto.org:9999/api/produtos';
-  URL_API = 'http://localhost:27109/api/v1/produto';
-  URL_API_B = 'http://localhost:27109/api/v1/ConsultaPedido/PesquisaItemPedido/'
+  URL_API = 'http://nota100.com.br/api/v1';
   constructor(private http: HttpClient) { }
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Basic my-auth-token' })
   }
 
   searchProduto(searchTerm: string) {
-    return this.http.get<Produtos>(this.URL_API + '/PesquisaPorNome/' + searchTerm).pipe(retry(2), catchError(this.handleError))
+    return this.http.get<Produtos>(this.URL_API +'/'+'produto'+'/'+ 'PesquisaPorNome/' + searchTerm).pipe(retry(2), catchError(this.handleError))
   }
   //pegaro todos os produtos
   getAllProdutos(): Observable<Produtos> {
-    return this.http.get<Produtos>(this.URL_API).pipe(retry(2), catchError(this.handleError))
+    return this.http.get<Produtos>(this.URL_API+'/'+'produto').pipe(retry(2), catchError(this.handleError))
   }
   getProdutoById(id: number): Observable<Produtos> {
-    return this.http.get<Produtos>(this.URL_API + '/' + id).pipe(retry(2), catchError(this.handleError))
+    return this.http.get<Produtos>(this.URL_API +'/'+'produto' + '/' + id).pipe(retry(2), catchError(this.handleError))
   }
   getProdutosById(id: number):Observable<Produtos>
   {
 
-    return this.http.get<Produtos>(this.URL_API_B + id).pipe(retry(2),catchError(this.handleError))
+    return this.http.get<Produtos>(this.URL_API+'/'+'ConsultaPedido/PesquisaItemPedido/' + id).pipe(retry(2),catchError(this.handleError))
   }
   //salvar um produto
   saveProduto(produto: Produtos): Observable<Produtos> {
-    return this.http.post<Produtos>(this.URL_API, JSON.stringify(produto), this.httpOptions)
+    return this.http.post<Produtos>(this.URL_API+'/'+'produto', JSON.stringify(produto), this.httpOptions)
   }
   // utualiza um produto
   updateProduto(produto: Produtos): Observable<Produtos> {
-    return this.http.put<Produtos>(this.URL_API + '/' + produto.idproduto, JSON.stringify(produto), this.httpOptions)
+    return this.http.put<Produtos>(this.URL_API +'/'+'produto'+ '/' + produto.idproduto, JSON.stringify(produto), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.handleError)

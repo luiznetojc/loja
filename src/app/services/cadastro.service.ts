@@ -10,7 +10,7 @@ import { Responselogin } from '../modelos/responselogin';
 export class CadastroService {
 
   constructor(private httpClient: HttpClient) { }
-  Url = 'http://localhost:27109/api/v1/usuario/novo';
+  Url = 'http://nota100.com.br/api/v1/usuario/novo';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer my-auth-token' })
   }

@@ -11,7 +11,7 @@ import { Responselogin } from '../modelos/responselogin';
 export class LoginService {
 
   constructor(private httpClient: HttpClient) { }
-  Url = 'http://localhost:27109/api/v1/usuario/login';
+  Url = 'http://nota100.com.br/api/v1/usuario/login';
   
 
   async doLogin(requestLogin: RequestLogin) {

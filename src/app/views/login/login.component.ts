@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
       this.notFounded = false;
       console.error(error);
     }
-    //this.LoginSvc.dopost(this.requestLogin).subscribe(accept =>(console.log(accept)),error =>(console.error(error)));
   }
 
 }

@@ -19,6 +19,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +45,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgbModule,
     MatSelectModule,
     MatFormFieldModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule
+  
   ],
   providers: [],
   bootstrap: [AppComponent, PedidoslistComponent]

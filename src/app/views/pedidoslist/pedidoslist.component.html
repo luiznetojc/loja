@@ -9,19 +9,22 @@
     </div>
 </h5>
     <div class="card-body">
-        <div style="margin-left: 20px;">
+        <div class="mat-elevation-z8">
+        <div class="table-head">
         <table>
 
             <thead>
                 <tr>
                     <th scope="col" style="width: 100px;">Id:</th>
                     <th scope="col" style="width: 200px;">Data:</th>
-                    <th scope="col" style="width: 100px;">valor:</th>
-                    <th scope="col" style="width: 100px;">status:</th>
+                    <th scope="col" style="width: 100px;">Valor:</th>
+                    <th scope="col" style="width: 100px;">Status:</th>
                 </tr>
             </thead>
         </table>
         </div>
+        </div>
+    <div class="mat-elevation-z8">
     <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
 
         <ngb-panel title="Simple" *ngFor="let Pedidos of allPedidos | async">
@@ -31,8 +34,8 @@
                         <td style="padding-left: 90px;"><b>{{Pedidos.data_pedido}}</b></td>
                         <td style="padding-left: 75px;"><b>{{Pedidos.valor_pedido}}</b></td>
                         <td style="padding-left: 80px;"><b>{{Pedidos.status}}</b></td>
-                        <td style="padding-left: 180px;"> <button ngbPanelToggle class="btn btn btn-outline-primary ml-2">Abrir</button></td>
-                        <td><button (click)="getPDF(Pedidos.pdf)" class="btn btn btn-outline-success ml-2">Situação</button></td>
+                        <td style="padding-left: 180px;"> <button ngbPanelToggle class="btn btn btn-outline-primary ml-2">Expandir</button></td>
+                        <td><button (click)="reloadPedido(Pedidos.idpedido)" class="btn btn btn-outline-success ml-2">Situação</button></td>
                         <td><button (click)="getPDF(Pedidos.pdf)" class="btn btn btn-outline-success ml-2">PDF</button></td>
                         <td><button (click)="getXML(Pedidos.xml)"class="btn btn btn-outline-success ml-2">XML</button></td>
                         <td><button (click)="cancelarNota(Pedidos.xmlCancelamento)"class="btn btn btn-outline-success ml-2">Cancelar</button></td>
@@ -47,33 +50,43 @@
                 <td>{{Pedidos.chave}}</td>
                 <td>{{Pedidos.dataAutorizacao}}</td>
                 <td>{{Pedidos.dataCancelamento}}</td>
-                <td><button (click)="searchProdutobyId(Pedidos.idpedido)" class="btn btn btn-outline-success ml-2">Produtos</button></td>
-                <div class="card list-produtos">
-                    <table>
-                    <thead>
-                        <tr>
-                            <th scope="col" style="width: 100px;">Id</th>
-                            <th scope="col" style="width: 100px;">Descrição</th>
-                            <th scope="col" style="width: 100px;">Preço</th>
-                            <th scope="col" style="width: 100px;">Desconto</th>
-                            <th scope="col" style="width: 100px;">Qtd</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let Produtos of  allProdutos | async">
-                            <td>{{Produtos.idproduto}}</td>
-                            <td>{{Produtos.descricao_produto}}</td>
-                            <td>{{Produtos.preco_item}}</td>
-                            <td>{{Produtos.preco_desconto_item}}</td>
-                            <td>{{Produtos.quantidade_item}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                </div>
+              <!--   <td><button (click)="searchProdutobyId(Pedidos.idpedido)" class="btn btn btn-outline-success ml-2">Produtos</button></td> --> 
+              <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+                    <ngb-panel title="Simple">
+                        <ng-template ngbPanelHeader class="table">
+                            <button ngbPanelToggle (click)="searchProdutobyId(Pedidos.idpedido)" class="btn btn btn-outline-primary ml-2">Produtos</button>
+                           </ng-template>
+                           <ng-template ngbPanelContent class="table">
+
+                               <table class="table">
+                                   <thead>
+                                       <tr>
+                                           <th scope="col" style="width: 100px;">Id</th>
+                                           <th scope="col" style="width: 100px;">Descrição</th>
+                                           <th scope="col" style="width: 100px;">Preço</th>
+                                           <th scope="col" style="width: 100px;">Desconto</th>
+                                           <th scope="col" style="width: 100px;">Qtd</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let Produtos of  allProdutos | async">
+                                            <td>{{Produtos.idproduto}}</td>
+                                            <td>{{Produtos.descricao_produto}}</td>
+                                            <td>{{Produtos.preco_item}}</td>
+                                            <td>{{Produtos.preco_desconto_item}}</td>
+                                            <td>{{Produtos.quantidade_item}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </ng-template>
+                    </ngb-panel>
+                </ngb-accordion>
+       
                 
             </ng-template>
         </ngb-panel>
 
     </ngb-accordion>
+    </div>
     </div>
     </div>
