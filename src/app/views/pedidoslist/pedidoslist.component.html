@@ -30,12 +30,13 @@
         <ngb-panel title="Simple" *ngFor="let Pedidos of allPedidos | async">
             <ng-template ngbPanelHeader>
                     <table>
-                        <td style="padding-left: auto;"><b>{{Pedidos.idpedido}}</b></td>
-                        <td style="padding-left: 90px;"><b>{{Pedidos.data_pedido}}</b></td>
-                        <td style="padding-left: 75px;"><b>{{Pedidos.valor_pedido}}</b></td>
-                        <td style="padding-left: 80px;"><b>{{Pedidos.status}}</b></td>
                         <td style="padding-left: 180px;"> <button ngbPanelToggle class="btn btn btn-outline-primary ml-2">Expandir</button></td>
-                        <td><button (click)="reloadPedido(Pedidos.idpedido)" class="btn btn btn-outline-success ml-2">Situação</button></td>
+                        <td style="padding-left: auto;">{{Pedidos.idpedido}}</td>
+                        <td>{{Pedidos.numero}}</td>
+                        <td style="padding-left: 90px;">{{Pedidos.data_pedido |date:"hh-mm"}}</td>
+                        <td style="padding-left: 75px;">{{Pedidos.valor_pedido|currency:'BRL'}}</td>
+                        <td style="padding-left: 80px;">{{Pedidos.status}}</td>
+                        <td><button (click)="checkNfc(Pedidos.idpedido)" class="btn btn btn-outline-success ml-2">Situação</button></td>
                         <td><button (click)="getPDF(Pedidos.pdf)" class="btn btn btn-outline-success ml-2">PDF</button></td>
                         <td><button (click)="getXML(Pedidos.xml)"class="btn btn btn-outline-success ml-2">XML</button></td>
                         <td><button (click)="cancelarNota(Pedidos.xmlCancelamento)"class="btn btn btn-outline-success ml-2">Cancelar</button></td>
@@ -45,7 +46,6 @@
                 <td>{{Pedidos.mensagem}}</td>
                 <td>{{Pedidos.emissao}}</td>
                 <td>{{Pedidos.protocolo}}</td>
-                <td>{{Pedidos.numero}}</td>
                 <td>{{Pedidos.serie}}</td>
                 <td>{{Pedidos.chave}}</td>
                 <td>{{Pedidos.dataAutorizacao}}</td>

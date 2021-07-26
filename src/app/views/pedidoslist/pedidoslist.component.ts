@@ -20,7 +20,7 @@ export class PedidoslistComponent implements OnInit {
    this.searchPedido();
 
   }
-  reloadPedido(id:string)
+  reloadPedido()
   {
     this.searchPedido();
   }
@@ -68,5 +68,12 @@ export class PedidoslistComponent implements OnInit {
     this.allPedidos = this.pedidosSvc.getPedidosbyData(this.dataString.substring(0,10));
     this.formatDatePedidos();
   }
-
+  checkNfc(id: string)
+  {
+    this.allPedidos.forEach((index) => {
+      if (index == id)
+        this.pedidosSvc.checkNfc(id);
+    })
+    this.reloadPedido();
+  }
 }

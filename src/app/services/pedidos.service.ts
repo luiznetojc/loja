@@ -52,7 +52,10 @@ export class PedidosService {
     );
     
   }
-  
+  checkNfc(id:string)
+  {
+    return this.http.get<ResponsePedido>(this.URL_API+ '/'+'v1/ConsultaPedido/PesquisaSituacaoPedido'+'/'+ id).pipe(retry(2), catchError(this.handleError))
+  }
   // Manipulação de erros
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
