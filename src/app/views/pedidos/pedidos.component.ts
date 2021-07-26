@@ -64,17 +64,17 @@ export class PedidosComponent implements OnInit {
       this.temp.idpedido_item = this.cont;
       this.temp.descricao_produto = produto.descricao_produto;
       this.temp.ncm_produto = produto.ncm_produto;
-      this.temp.quantidade_item = qtd;
-      this.temp.preco_item = 1;
+      this.temp.quantidade_item = 1;
+      this.temp.preco_item = produto.preco_venda;
       this.request.pedido_item.push(this.temp);
       this.addPreco(this.temp);
       this.isValid();
   
   }
-  changeQtd(produto: any, qtd: number){
+  changeQtd(produto: any, qtd: any){
     this.request.pedido_item.forEach((element, index) => {
       if (element.idpedido_item == produto.idpedido_item)
-        element.quantidade_item = qtd;
+        element.quantidade_item = qtd.value;
     });
     qtd=1;
   }
@@ -95,6 +95,13 @@ export class PedidosComponent implements OnInit {
 
       this.allProdutos = this.produtosSvc.searchProduto(this.search);
     }
+  }
+  changePreco(produto: any, preco: any){
+    this.request.pedido_item.forEach((element, index) => {
+      if (element.idpedido_item == produto.idpedido_item)
+        element.preco_item = preco.value;
+   });
+  
   }
   addPreco(produto: PedidoItem)// verify usado para dar desconto no preco total caso opçao 1 selecionada
   {

@@ -43,13 +43,13 @@
                     </table>
             </ng-template>
             <ng-template ngbPanelContent>
-                <td>{{Pedidos.mensagem}}</td>
-                <td>{{Pedidos.emissao}}</td>
-                <td>{{Pedidos.protocolo}}</td>
-                <td>{{Pedidos.serie}}</td>
-                <td>{{Pedidos.chave}}</td>
-                <td>{{Pedidos.dataAutorizacao}}</td>
-                <td>{{Pedidos.dataCancelamento}}</td>
+                <tr><td>{{Pedidos.mensagem}}</td></tr>
+            <tr><td>{{Pedidos.emissao}}</td></tr>
+            <tr><td>{{Pedidos.protocolo}}</td></tr>
+                <tr> <td>{{Pedidos.serie}}</td></tr>
+                    <tr><td>{{Pedidos.chave}}</td></tr>
+                        <tr> <td>{{Pedidos.dataAutorizacao}}</td></tr>
+                            <tr><td>{{Pedidos.dataCancelamento}}</td></tr>
               <!--   <td><button (click)="searchProdutobyId(Pedidos.idpedido)" class="btn btn btn-outline-success ml-2">Produtos</button></td> --> 
               <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
                     <ngb-panel title="Simple">
