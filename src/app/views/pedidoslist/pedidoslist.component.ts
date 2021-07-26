@@ -70,6 +70,7 @@ export class PedidoslistComponent implements OnInit {
   }
   checkNfc(id: string)
   {
+    this.pedidosSvc.checkNfc(id);
     this.allPedidos.forEach((index) => {
       if (index == id)
         this.pedidosSvc.checkNfc(id);
