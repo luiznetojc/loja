@@ -67,7 +67,7 @@
             <td>{{Produtos.quantidade_item}}</td>
             <td> <input #qtdInput type="number" class="form-control input-sm" style="width: 100px;" placeholder="Quantidade"
               (change)="changeQtd(Produtos,$event.target)"name="{{i}}" min="{{i}}" id="{{i}}"></td>
-          <td><td> <input #qtdInput type="number" class="form-control input-sm" style="width: 100px;" placeholder="Preço" [(ngModel)]="Produtos.preco_item"
+          <td><td> <input #qtdInput type="number" class="form-control input-sm" style="width: 100px;" placeholder="Preço"
             (change)="changePreco(Produtos,$event.target)"name="{{i}}" min="{{i}}" id="{{i}}"></td>
             <td>
               <button type="button" class="btn btn-danger btn-sm ml-1"

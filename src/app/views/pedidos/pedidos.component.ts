@@ -73,8 +73,10 @@ export class PedidosComponent implements OnInit {
   }
   changeQtd(produto: any, qtd: any){
     this.request.pedido_item.forEach((element, index) => {
-      if (element.idpedido_item == produto.idpedido_item)
+      if (element.idpedido_item == produto.idpedido_item){
+        this.erasePreco(element);
         element.quantidade_item = qtd.value;
+        this.addPreco(element);}
     });
     qtd=1;
   }
@@ -98,19 +100,24 @@ export class PedidosComponent implements OnInit {
   }
   changePreco(produto: any, preco: any){
     this.request.pedido_item.forEach((element, index) => {
-      if (element.idpedido_item == produto.idpedido_item)
+      if (element.idpedido_item == produto.idpedido_item){
+        this.erasePreco(element);
         element.preco_item = preco.value;
+        this.addPreco(element);
+      }
    });
   
   }
   addPreco(produto: PedidoItem)// verify usado para dar desconto no preco total caso opçao 1 selecionada
   {
-    this.request.valor_pedido += (produto.preco_item) * this.qtd - (0);//desconto 
+    console.log('add'+produto.preco_item);
+    this.request.valor_pedido += produto.preco_item * produto.quantidade_item - (0);//desconto 
     this.request.valor_pedido = parseFloat(this.request.valor_pedido.toFixed(2));
 
   }
   erasePreco(produto: PedidoItem) {
-    this.request.valor_pedido -= (produto.preco_item) * produto.quantidade_item - (0);//desconto
+    console.log('erase'+produto.preco_item);
+    this.request.valor_pedido -= produto.preco_item * produto.quantidade_item - (0);//desconto
     this.request.valor_pedido = parseFloat(this.request.valor_pedido.toFixed(2));
   }
   sendPedidos() {
