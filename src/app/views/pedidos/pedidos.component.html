@@ -22,7 +22,6 @@
             <th scope="col" style="width: 700px;">Descrição</th>
             <th scope="col" style="width: 100px;">UN</th>
             <th scope="col">Preço</th>
-            <th scope="col">Quantidade</th>
             <th scope="col">Ações</th>
           </tr>
         </thead>
@@ -32,9 +31,7 @@
             <td>{{produtos.ncm_produto}}</td>
             <td>{{produtos.descricao_produto}}</td>
             <td>{{produtos.unidade_medida}}</td>
-            <td>{{produtos.preco_venda}}</td>
-            <td> <input #qtdInput type="text" class="form-control input-sm" style="width: 100px;" placeholder="Quantidade"
-                [(ngModel)]="qtd" name="{{i}}" min="{{i}}" id="{{i}}"></td>
+            <td>{{produtos.preco_venda|currency:'BRL'}}</td>
             <td>
               <button class="btn btn-primary " (click)="selectProduto(produtos,qtd)" type="button">Adicionar</button>
             </td>
@@ -47,14 +44,13 @@
   </div>
   <div class="card list-produto">
     <div class="card-body">
-      <div style="font-size: 20px; width:200px;"><b>Preço Total: {{request.valor_pedido}}</b></div>
+      <div style="font-size: 20px; width:200px;"><b>Preço Total: {{request.valor_pedido|currency:'BRL'}}</b></div>
       <table class="table">
         <thead>
           <tr>
 
             <th scope="col" style="width: 700px;">Descrição</th>
             <th scope="col">Preço</th>
-            <th scope="col">Desconto</th>
             <th scope="col">Qtd</th>
             <th scope="col">Ações</th>
             <th scope="col" style="width: 200px;">
@@ -64,12 +60,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let Produtos of  request.pedido_item">
+          <tr *ngFor="let Produtos of  request.pedido_item; let i = index;">
 
             <td>{{Produtos.descricao_produto}}</td>
-            <td>{{Produtos.preco_item}}</td>
-            <td>{{Produtos.preco_desconto_item}}</td>
-            <td>{{Produtos.quantidade_item}}</td>
+            <td>{{Produtos.preco_item|currency:'BRL'}}</td>
+            <td> <input #qtdInput type="number" class="form-control input-sm" style="width: 100px;" placeholder="Quantidade"
+              [(ngModel)]="qtd" (change)="changeQtd(Produtos,qtd)"name="{{i}}" min="{{i}}" id="{{i}}"></td>
+          <td>
             <td>
               <button type="button" class="btn btn-danger btn-sm ml-1"
                 (click)="deleteProduto(Produtos)">Deletar</button>

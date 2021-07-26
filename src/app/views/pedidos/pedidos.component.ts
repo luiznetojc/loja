@@ -36,7 +36,7 @@ export class PedidosComponent implements OnInit {
   selecaoProdutos = Array<PedidoItem>();
   constructor(private produtosSvc: ProdutosService, private PedidosSvc: PedidosService, private router: Router) {
     this.cont = 0;
-    this.qtd = 0;
+    this.qtd = 1;
   }
   public search = "";
   allProdutos!: Observable<any>;
@@ -58,7 +58,6 @@ export class PedidosComponent implements OnInit {
     this.allProdutos = this.produtosSvc.getAllProdutos();
   }
   selectProduto(produto: Produtos, qtd: number) {
-    if (qtd != 0) {
       this.cont += 1;
       this.temp = {} as PedidoItem;
       this.temp.idproduto = this.cont;
@@ -66,11 +65,18 @@ export class PedidosComponent implements OnInit {
       this.temp.descricao_produto = produto.descricao_produto;
       this.temp.ncm_produto = produto.ncm_produto;
       this.temp.quantidade_item = qtd;
-      this.temp.preco_item = produto.preco_venda;
+      this.temp.preco_item = 1;
       this.request.pedido_item.push(this.temp);
       this.addPreco(this.temp);
       this.isValid();
-    }
+  
+  }
+  changeQtd(produto: any, qtd: number){
+    this.request.pedido_item.forEach((element, index) => {
+      if (element.idpedido_item == produto.idpedido_item)
+        element.quantidade_item = qtd;
+    });
+    qtd=1;
   }
   isValid() {
     if (this.cont > 0) {
