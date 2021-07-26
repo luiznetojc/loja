@@ -15,7 +15,7 @@
 
             <thead>
                 <tr>
-                    <th scope="col" style="padding-left: 130px;">Id:</th>
+                    <th scope="col" style="padding-left: 130px;">Numero:</th>
                     <th scope="col" style="padding-left: 85px;">Data:</th>
                     <th scope="col" style="padding-left: 80px;">Valor:</th>
                     <th scope="col" style="padding-left: 100px;">Status:</th>
@@ -31,8 +31,7 @@
             <ng-template ngbPanelHeader>
                     <table>
                         <td> <button ngbPanelToggle class="btn btn btn-outline-primary ml-2">Expandir</button></td>
-                        <td style="padding-left: 30px;">{{Pedidos.idpedido}}</td>
-                        <td>{{Pedidos.numero}}</td>
+                        <td style="padding-left: 30px;">{{Pedidos.numero}}</td>
                         <td style="padding-left: 90px;">{{Pedidos.data_pedido |date:"hh:mm"}}</td>
                         <td style="padding-left: 75px;">{{Pedidos.valor_pedido|currency:'BRL'}}</td>
                         <td style="padding-left: 80px; padding-right: 90px;">{{Pedidos.status}}</td>
@@ -43,6 +42,7 @@
                     </table>
             </ng-template>
             <ng-template ngbPanelContent>
+                <tr><td><b>Idpedido: </b>{{Pedidos.idpedido}}</td></tr>
                 <tr><td><b>Id: </b>{{Pedidos.id}}</td></tr>
                 <tr><td><b>Mensagem: </b>{{Pedidos.mensagem}}</td></tr>
             <tr><td><b>Emissão: </b>{{Pedidos.emissao}}</td></tr>
