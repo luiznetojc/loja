@@ -47,7 +47,7 @@ export class PedidosComponent implements OnInit {
   public valid = false;
   public CPF = "";
   ngOnInit(): void {
-    this.getAllProdutos();
+    //this.getAllProdutos();
     // this.getAllPedidos();
     this.request.pedido_item.pop();//remove valor de inicialização
   }

@@ -51,7 +51,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col" style="width: 100px;">Id</th>
+
             <th scope="col" style="width: 700px;">Descrição</th>
             <th scope="col">Preço</th>
             <th scope="col">Desconto</th>
@@ -65,7 +65,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let Produtos of  request.pedido_item">
-            <td>{{Produtos.idproduto}}</td>
+
             <td>{{Produtos.descricao_produto}}</td>
             <td>{{Produtos.preco_item}}</td>
             <td>{{Produtos.preco_desconto_item}}</td>
@@ -83,8 +83,6 @@
                   (click)="sendPedidos()">Enviar</button></td>
               <td><button type="button" class="btn btn-danger" (click)="clearProdutos()">Limpar</button></td>
             </div>
-            <td><input type="text" class="form-control mr-sm-2" style="width: 200px;margin-bottom: 10px;"
-                placeholder="CPF" [(ngModel)]="CPF" aria-label="CPF" mask="000.000.000-99"></td>
             <td>
               <div style="width: 190px;" class="input-group mb-3">
                 <mat-form-field appearance="fill">  
@@ -96,14 +94,16 @@
                 </mat-form-field>
               </div>
             </td>
-            <td>
+            <td><input type="text" class="form-control mr-sm-2" style="width: 200px;margin-bottom: 10px;"
+                placeholder="CPF" [(ngModel)]="CPF" aria-label="CPF" mask="000.000.000-99"></td>
+            <!-- <td>
               <div style="width: 150px;" class="input-group input-group-sm mb-3">
                 <div class="custom-file">
                   <input type="file" (change)="inputFile($event)" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01-sm">
                   <label class="custom-file-label" for="inputGroupFile01">Arquivo json</label>
                 </div>
               </div>
-            </td>
+            </td> -->
           </tr>
         </table>
       </table>
