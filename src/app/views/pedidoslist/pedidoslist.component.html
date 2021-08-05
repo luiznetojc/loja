@@ -1,98 +1,133 @@
 <div class="container">
-<div class="card list-produto">
-<h5 class="card-header-sm">
+    <div class="card list-produto">
+        <h5 class="card-header-sm">
 
-    <div class="form-group">
-        <td><label for="date"><b> </b></label></td>
-        <td><input style="margin-left: 50px; margin-top: 20px;" type="date" class="form-control-sm" id="date" [(ngModel)]="data" (change)="searchPedido()"></td>
-        <td><button style="margin-left: 50px;" (click)="searchPedido()"class="btn btn btn-outline-success ml-2">Buscar</button></td>
-        <td>De<input id="1" style="margin-left: 50px; margin-top: 20px;" type="date" class="form-control-sm"  [(ngModel)]="begin_data"></td>
-        <td><label for="2">Até</label><input id="2" style="margin-left: 50px; margin-top: 20px;" type="date" class="form-control-sm"  [(ngModel)]="end_data"></td>
-        <td><button style="margin-left: 50px;" (click)="getAllXML()"class="btn btn btn-outline-success ml-2">Baixar XML</button></td>
-    </div>
-</h5>
-    <div class="card-body">
-        <div class="mat-elevation-z8">
-        <div class="table-head">
-        <table>
-
-            <thead>
-                <tr>
-                    <th scope="col" style="padding-left: 130px;">Numero:</th>
-                    <th scope="col" style="padding-left: 85px;">Data:</th>
-                    <th scope="col" style="padding-left: 80px;">Valor:</th>
-                    <th scope="col" style="padding-left: 100px;">Status:</th>
-                </tr>
-            </thead>
-        </table>
-        </div>
-        </div>
-    <div class="mat-elevation-z8">
-    <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-
-        <ngb-panel title="Simple" *ngFor="let Pedidos of allPedidos | async">
-            <ng-template ngbPanelHeader>
+            <div class="form-group">
+                <td><label for="date"><b> </b></label></td>
+                <td><input style="margin-left: 50px; margin-top: 20px;" type="date" class="form-control-sm" id="date"
+                        [(ngModel)]="data" (change)="searchPedido()"></td>
+                <td><button style="margin-left: 50px;" (click)="searchPedido()"
+                        class="btn btn btn-outline-success ml-2">Buscar</button></td>
+                <td style="margin-left: 50px;">
+                    <div class="" style="margin-left: 100px; background-color: transparent;">
+                        <span><b>De</b></span>
+                        <input id="1" type="date" style="margin-left: 5px; margin-right: 30px;" class="form-control-sm"
+                            [(ngModel)]="begin_data">
+                        <span><b>Até</b></span>
+                        <input id="2" type="date" style="margin-left: 5px;" class="form-control-sm"
+                            [(ngModel)]="end_data">
+                        <button style="margin-left: 50px;" (click)="getAllXML()"
+                            class="btn btn btn-outline-success ml-2">Baixar XML</button>
+                    </div>
+                </td>
+            </div>
+        </h5>
+        <div class="card-body">
+            <div class="mat-elevation-z8">
+                <div class="table-head">
                     <table>
-                        <td> <button ngbPanelToggle class="btn btn btn-outline-primary ml-2">Expandir</button></td>
-                        <td style="padding-left: 30px;">{{Pedidos.numero}}</td>
-                        <td style="padding-left: 90px;">{{Pedidos.data_pedido |date:"hh:mm"}}</td>
-                        <td style="padding-left: 75px;">{{Pedidos.valor_pedido|currency:'BRL'}}</td>
-                        <td style="padding-left: 80px; padding-right: 90px;">{{Pedidos.status}}</td>
-                        <td><button (click)="checkNfc(Pedidos.idpedido)" class="btn btn btn-outline-success ml-2">Situação</button></td>
-                        <td><button (click)="getPDF(Pedidos.pdf)" class="btn btn btn-outline-success ml-2">PDF</button></td>
-                        <td><button (click)="getXML(Pedidos.xml)"class="btn btn btn-outline-success ml-2">XML</button></td>
-                        <td><button (click)="cancelarNota(Pedidos.id)"class="btn btn btn-outline-success ml-2">Cancelar</button></td>
+
+                        <thead>
+                            <tr>
+                                <th scope="col" style="padding-left: 130px;">Numero:</th>
+                                <th scope="col" style="padding-left: 85px;">Data:</th>
+                                <th scope="col" style="padding-left: 80px;">Valor:</th>
+                                <th scope="col" style="padding-left: 100px;">Status:</th>
+                            </tr>
+                        </thead>
                     </table>
-            </ng-template>
-            <ng-template ngbPanelContent>
-                <tr><td><b>Idpedido: </b>{{Pedidos.idpedido}}</td></tr>
-                <tr><td><b>Id: </b>{{Pedidos.id}}</td></tr>
-                <tr><td><b>Mensagem: </b>{{Pedidos.mensagem}}</td></tr>
-            <tr><td><b>Emissão: </b>{{Pedidos.emissao}}</td></tr>
-            <tr><td><b>Protocolo: </b>{{Pedidos.protocolo}}</td></tr>
-                <tr> <td><b>Serie: </b>{{Pedidos.serie}}</td></tr>
-                    <tr><td><b>Chave: </b>{{Pedidos.chave}}</td></tr>
-                        <tr> <td><b>DataAutorizacao: </b>{{Pedidos.dataAutorizacao}}</td></tr>
-                            <tr><td><b>dataCancelamento: </b>{{Pedidos.dataCancelamento}}</td></tr>
-              <!--   <td><button (click)="searchProdutobyId(Pedidos.idpedido)" class="btn btn btn-outline-success ml-2">Produtos</button></td> --> 
-              <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-                    <ngb-panel title="Simple">
-                        <ng-template ngbPanelHeader class="table">
-                            <button ngbPanelToggle (click)="searchProdutobyId(Pedidos.idpedido)" class="btn btn btn-outline-primary ml-2">Produtos</button>
-                           </ng-template>
-                           <ng-template ngbPanelContent class="table">
+                </div>
+            </div>
+            <div class="mat-elevation-z8">
+                <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
 
-                               <table class="table">
-                                   <thead>
-                                       <tr>
-                                           <th scope="col" style="width: 100px;">Id</th>
-                                           <th scope="col" style="width: 100px;">Descrição</th>
-                                           <th scope="col" style="width: 100px;">Preço</th>
-                                           <th scope="col" style="width: 100px;">NCM</th>
-                                           <th scope="col" style="width: 100px;">Desconto</th>
-                                           <th scope="col" style="width: 100px;">Qtd</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let Produtos of  allProdutos | async">
-                                            <td>{{Produtos.idproduto}}</td>
-                                            <td>{{Produtos.descricao_produto}}</td>
-                                            <td>{{Produtos.preco_item}}</td>
-                                            <td>{{Produtos.ncm_produto}}</td>
-                                            <td>{{Produtos.preco_desconto_item}}</td>
-                                            <td>{{Produtos.quantidade_item}}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </ng-template>
+                    <ngb-panel title="Simple" *ngFor="let Pedidos of allPedidos | async">
+                        <ng-template ngbPanelHeader>
+                            <table>
+                                <td> <button ngbPanelToggle class="btn btn btn-outline-primary ml-2">Expandir</button>
+                                </td>
+                                <td style="padding-left: 30px;">{{Pedidos.numero}}</td>
+                                <td style="padding-left: 90px;">{{Pedidos.data_pedido |date:"hh:mm"}}</td>
+                                <td style="padding-left: 75px;">{{Pedidos.valor_pedido|currency:'BRL'}}</td>
+                                <td style="padding-left: 80px; padding-right: 90px;">{{Pedidos.status}}</td>
+                                <td><button (click)="checkNfc(Pedidos.idpedido)"
+                                        class="btn btn btn-outline-success ml-2">Situação</button></td>
+                                <td><button (click)="getPDF(Pedidos.pdf)"
+                                        class="btn btn btn-outline-success ml-2">PDF</button></td>
+                                <td><button (click)="getXML(Pedidos.xml)"
+                                        class="btn btn btn-outline-success ml-2">XML</button></td>
+                                <td><button (click)="cancelarNota(Pedidos.id)"
+                                        class="btn btn btn-outline-success ml-2">Cancelar</button></td>
+                            </table>
+                        </ng-template>
+                        <ng-template ngbPanelContent>
+                            <tr>
+                                <td><b>Idpedido: </b>{{Pedidos.idpedido}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Id: </b>{{Pedidos.id}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Mensagem: </b>{{Pedidos.mensagem}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Emissão: </b>{{Pedidos.emissao}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Protocolo: </b>{{Pedidos.protocolo}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Serie: </b>{{Pedidos.serie}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Chave: </b>{{Pedidos.chave}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>DataAutorizacao: </b>{{Pedidos.dataAutorizacao}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>dataCancelamento: </b>{{Pedidos.dataCancelamento}}</td>
+                            </tr>
+                            <!--   <td><button (click)="searchProdutobyId(Pedidos.idpedido)" class="btn btn btn-outline-success ml-2">Produtos</button></td> -->
+                            <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+                                <ngb-panel title="Simple">
+                                    <ng-template ngbPanelHeader class="table">
+                                        <button ngbPanelToggle (click)="searchProdutobyId(Pedidos.idpedido)"
+                                            class="btn btn btn-outline-primary ml-2">Produtos</button>
+                                    </ng-template>
+                                    <ng-template ngbPanelContent class="table">
+
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" style="width: 100px;">Id</th>
+                                                    <th scope="col" style="width: 100px;">Descrição</th>
+                                                    <th scope="col" style="width: 100px;">Preço</th>
+                                                    <th scope="col" style="width: 100px;">NCM</th>
+                                                    <th scope="col" style="width: 100px;">Desconto</th>
+                                                    <th scope="col" style="width: 100px;">Qtd</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let Produtos of  allProdutos | async">
+                                                    <td>{{Produtos.idproduto}}</td>
+                                                    <td>{{Produtos.descricao_produto}}</td>
+                                                    <td>{{Produtos.preco_item}}</td>
+                                                    <td>{{Produtos.ncm_produto}}</td>
+                                                    <td>{{Produtos.preco_desconto_item}}</td>
+                                                    <td>{{Produtos.quantidade_item}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </ng-template>
+                                </ngb-panel>
+                            </ngb-accordion>
+
+
+                        </ng-template>
                     </ngb-panel>
-                </ngb-accordion>
-       
-                
-            </ng-template>
-        </ngb-panel>
 
-    </ngb-accordion>
-    </div>
-    </div>
+                </ngb-accordion>
+            </div>
+        </div>
     </div>
