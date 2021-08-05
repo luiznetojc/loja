@@ -18,7 +18,7 @@ const routes: Routes = [
       { path: 'pedidoslist', component: PedidoslistComponent },
 
     ],
-    canActivate: [AuthGuard]
+    //canActivate: [AuthGuard]
   },
   { path: 'cadastro', component: CadastroComponent },
   { path: 'login', component: LoginComponent },

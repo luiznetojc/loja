@@ -44,14 +44,16 @@
   </div>
   <div class="card list-produto">
     <div class="card-body">
-      <div style="font-size: 20px; width:200px;"><b>Preço Total: {{request.valor_pedido|currency:'BRL'}}</b></div>
+     
       <table class="table">
         <thead>
           <tr>
 
             <th scope="col" style="width: 700px;">Descrição</th>
-            <th scope="col">Preço</th>
+         
             <th scope="col">Qtd</th>
+            <th scope="col">Preço</th>
+            <th scope="col">Total</th>
             <th scope="col">Ações</th>
             <th scope="col" style="width: 200px;">
               <div *ngIf="valid != false">
@@ -62,13 +64,17 @@
         <tbody>
           <tr *ngFor="let Produtos of  request.pedido_item; let i = index;">
 
-            <td>{{Produtos.descricao_produto}}</td>
-            <td>{{Produtos.preco_item|currency:'BRL'}}</td>
-            <td>{{Produtos.quantidade_item}}</td>
+            <td style="width: 200px;">{{Produtos.descricao_produto}}</td>
             <td> <input #qtdInput type="number" class="form-control input-sm" style="width: 100px;" placeholder="Quantidade"
-              (change)="changeQtd(Produtos,$event.target)"name="{{i}}" min="{{i}}" id="{{i}}"></td>
-          <td><td> <input #qtdInput type="number" class="form-control input-sm" style="width: 100px;" placeholder="Preço"
-            (change)="changePreco(Produtos,$event.target)"name="{{i}}" min="{{i}}" id="{{i}}"></td>
+              (change)="changeQtd(Produtos,$event.target)"name="{{i}}" min="{{i}}" id="{{i}}" value="1"></td>
+
+          <td> <input #qtdInput type="number" class="form-control input-sm" style="width: 100px;" placeholder="Preço"
+            (change)="changePreco(Produtos,$event.target)"name="{{i}}" min="{{i}}" id="{{i}}" value={{Produtos.preco_item}}></td>
+
+            <td> 
+              {{Produtos.preco_item*Produtos.quantidade_item }}
+            </td>
+
             <td>
               <button type="button" class="btn btn-danger btn-sm ml-1"
                 (click)="deleteProduto(Produtos)">Deletar</button>
@@ -107,5 +113,6 @@
         </table>
       </table>
     </div>
+     <div class="card-body" style="font-size: 20px"><b>Preço Total: {{request.valor_pedido|currency:'BRL'}}</b></div>
   </div>
 </div>

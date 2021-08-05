@@ -60,7 +60,7 @@ export class PedidosComponent implements OnInit {
   selectProduto(produto: Produtos, qtd: number) {
       this.cont += 1;
       this.temp = {} as PedidoItem;
-      this.temp.idproduto = this.cont;
+      this.temp.idproduto = produto.idproduto;
       this.temp.idpedido_item = this.cont;
       this.temp.descricao_produto = produto.descricao_produto;
       this.temp.ncm_produto = produto.ncm_produto;

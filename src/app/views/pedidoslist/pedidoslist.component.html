@@ -6,6 +6,9 @@
         <td><label for="date"><b> </b></label></td>
         <td><input style="margin-left: 50px; margin-top: 20px;" type="date" class="form-control-sm" id="date" [(ngModel)]="data" (change)="searchPedido()"></td>
         <td><button style="margin-left: 50px;" (click)="searchPedido()"class="btn btn btn-outline-success ml-2">Buscar</button></td>
+        <td>De<input id="1" style="margin-left: 50px; margin-top: 20px;" type="date" class="form-control-sm"  [(ngModel)]="begin_data"></td>
+        <td><label for="2">Até</label><input id="2" style="margin-left: 50px; margin-top: 20px;" type="date" class="form-control-sm"  [(ngModel)]="end_data"></td>
+        <td><button style="margin-left: 50px;" (click)="getAllXML()"class="btn btn btn-outline-success ml-2">Baixar XML</button></td>
     </div>
 </h5>
     <div class="card-body">
@@ -38,7 +41,7 @@
                         <td><button (click)="checkNfc(Pedidos.idpedido)" class="btn btn btn-outline-success ml-2">Situação</button></td>
                         <td><button (click)="getPDF(Pedidos.pdf)" class="btn btn btn-outline-success ml-2">PDF</button></td>
                         <td><button (click)="getXML(Pedidos.xml)"class="btn btn btn-outline-success ml-2">XML</button></td>
-                        <td><button (click)="cancelarNota(Pedidos.xmlCancelamento)"class="btn btn btn-outline-success ml-2">Cancelar</button></td>
+                        <td><button (click)="cancelarNota(Pedidos.id)"class="btn btn btn-outline-success ml-2">Cancelar</button></td>
                     </table>
             </ng-template>
             <ng-template ngbPanelContent>

@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { ResponsePedido } from 'src/app/modelos/response-pedido';
 import { PedidosService } from 'src/app/services/pedidos.service';
 import {formatDate } from '@angular/common';
+import { saveAs } from 'file-saver';
 import { ProdutosService } from 'src/app/services/produtos.service';
 @Component({
   selector: 'app-pedidoslist',
@@ -14,6 +15,7 @@ export class PedidoslistComponent implements OnInit {
   constructor(private pedidosSvc: PedidosService,private ProdutosSvc: ProdutosService) { }
   allPedidos!: Observable<any>;
   allProdutos!: Observable<any>;
+  pedidosRangeData!: Observable<any>;
   id = 1;
   ngOnInit(): void {
 
@@ -24,9 +26,24 @@ export class PedidoslistComponent implements OnInit {
   {
     this.searchPedido();
   }
-  cancelarNota(url:string)
+  cancelarNota(id:string)
   {
- this.pedidosSvc.cancelarNota(url);
+ this.pedidosSvc.cancelarNota(id);
+  }
+  begin_data =  "";
+  end_data = "";
+  getAllXML()
+  {
+    this.pedidosRangeData = this.pedidosSvc.getPedidosbyRangeData(this.begin_data,this.end_data);
+    this.pedidosRangeData.subscribe( pedidos =>{
+      for (let pedido of pedidos) {
+        var res = this.pedidosSvc.getPdfReport(pedido["xml"])
+        res.subscribe( res => {
+          saveAs(res);
+          })
+      }
+    })
+  
   }
   getPDF(url: string)
   {
@@ -44,7 +61,7 @@ export class PedidoslistComponent implements OnInit {
     window.open(fileURL, '_blank');
     })
   }
-  data = new Date();
+  data = new Date(); 
   dataString = "";
   formatDate(data: string)
   {
