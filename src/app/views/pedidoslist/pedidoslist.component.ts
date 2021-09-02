@@ -34,7 +34,7 @@ export class PedidoslistComponent implements OnInit {
     this.pedidosRangeData = this.pedidosSvc.getPedidosbyRangeData(this.begin_data, this.end_data);
     this.pedidosRangeData.subscribe(pedidos => {
       for (let pedido of pedidos) {
-        var res = this.pedidosSvc.getPdfReport(pedido["xml"])
+        var res = this.pedidosSvc.getXmlReport(pedido["xml"])
         res.subscribe(res => {
           saveAs(res);
         })

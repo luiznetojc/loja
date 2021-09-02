@@ -12,13 +12,14 @@ export class LoginService {
 
   constructor(private httpClient: HttpClient) { }
   Url = 'http://nota100.com.br/api/v1/usuario/login';
-  
+
 
   async doLogin(requestLogin: RequestLogin) {
     const result = await this.httpClient.post<any>(this.Url, requestLogin).toPromise();
     if (result && result.tokenUsuarioLogado) {
       window.localStorage.setItem('token', result.tokenUsuarioLogado);
       window.localStorage.setItem('cpfUsuario', result.emailUsuarioLogado);
+      window.localStorage.setItem('idempresa', result.idempresa);
       return true;
     }
     return false;
@@ -59,6 +60,6 @@ export class LoginService {
   removeAuthorizationToken() {
     window.localStorage.removeItem('token');
   }
- 
+
 }
 

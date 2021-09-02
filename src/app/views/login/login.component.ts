@@ -30,9 +30,10 @@ export class LoginComponent implements OnInit {
   }
   async doLogin() {
     try {
-      const result = await this.LoginSvc.doLogin(this.requestLogin);
+       const result = await this.LoginSvc.doLogin(this.requestLogin);
       console.log(this.result);
       this.notFounded = true;
+
       this.router.navigate(['']);
     } catch (error) {
       this.notFounded = false;

@@ -15,7 +15,7 @@ export class ProdutosService {
   }
 
   searchProduto(searchTerm: string) {
-    return this.http.get<Produtos>(this.URL_API +'/'+'produto'+'/'+ 'PesquisaPorNome/' + searchTerm).pipe(retry(2), catchError(this.handleError))
+    return this.http.get<Produtos>(this.URL_API +'/'+'produto'+'/'+ 'PesquisaPorNome/' +window.localStorage.getItem("idempresa")+'/'+ searchTerm).pipe(retry(2), catchError(this.handleError))
   }
   //pegaro todos os produtos
   getAllProdutos(): Observable<Produtos> {
